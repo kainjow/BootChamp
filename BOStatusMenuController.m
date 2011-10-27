@@ -99,10 +99,10 @@
 
 - (void)updateBootMenuTitle
 {
-	if (BOAuthorizationRequired() && ([bootMenuItem target] || [bootMenuItem submenu]))
-		[bootMenuItem setTitle:NSLocalizedString(@"Restart into Windows\u2026", "restart into windows menu item, installation required")];
-	else
-		[bootMenuItem setTitle:NSLocalizedString(@"Restart into Windows", "restart into windows menu item")];
+	NSString *restartTitle = NSLocalizedString(@"Restart into Windows", "restart into windows menu item");
+	if (BOAuthorizationRequired() && ([bootMenuItem target] || [bootMenuItem submenu])) {
+		restartTitle = [restartTitle stringByAppendingString:@"\u2026"];
+	}
 }
 
 - (void)updateBootMenuWithMedia:(NSArray *)media
