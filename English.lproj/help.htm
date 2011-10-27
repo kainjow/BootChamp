@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>BootChamp Help</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width; initial-scale=1.0;" />
+	<style type="text/css">
+	body {
+		font-family: "lucida grande";
+		font-size: 10pt;
+	}
+	#important {
+		color: red;
+	}
+	</style>
+</head>
+
+<body>
+
+<h2><a name="main">BootChamp Help</a></h2>
+
+<p>BootChamp is a small utility for quickly booting into Windows.</p>
+
+<p>How is this different than selecting your Windows volume from within Startup Disk in System Preferences? Using Startup Disk actually changes your startup disk permanently so that each time you restart, it boots into whatever you have selected. What this program is doing is the same thing that happens when you hold down Option at startup and select Windows. However, the app only requires a single click and your admin password, and then it restarts your computer into Windows without further input from you. It will not actually change your startup disk.</p>
+
+<p><strong>Release Notes:</strong><br/>
+<ul>
+	<li>1.2
+		<ul>
+			<li>BootChamp now only requires entering the administrative password once, instead of before each restart (the most requested feature!). This works by installing a helper tool into /Library/Application Support/BootChamp and giving it special permissions. If this file goes bad/missing, administrative access will be required to re-install.</li>
+			<li>Added support for Tuxera NTFS drivers.</li>
+			<li>Fixed a crash when reading certain volumes.</li>
+			<li>Fixed a bug where an error would display when selecting the Restart into Windows menu when there were multiple volumes to choose.</li>
+			<li>Built for 10.5 and up now instead of just 10.6, but completely untested on 10.5.</li>
+		</ul>
+	</li>
+	<li>1.1
+		<ul>
+			<li>Requires 10.6 or greater. Built as a 32/64-bit binary.</li>
+			<li><span id="important">Important:</span> BootChamp's abilitiy to temporarily set the startup disk does not work with the unibody family of MacBooks, which includes the Air and Pro (and possibly newer Mac Pros). As far as I'm aware, this is an Apple bug. Previous versions of BootChamp would restart but would not boot into Windows. This new version adds a workaround preference "Next restart only" which is enabled by default. In order for the app to work on these newer computers, you <em>must</em> disable this preference. Unfortunatey, this workaround will set the start disk for all future restarts, so you must change it back when restarting back into Mac OS X. <b><u>Note: this appears to be fixed in 10.6.3.</u></b>
+			</li>
+	
+			<li>Added a preference "Launch at startup" enabled by default.</li>
+
+			<li>If BootChamp finds more than one potentially bootable drive, it will list them in the menu to choose from. When a bootable drive is mounted or unmounted, BootChamp will update appropriately.</li>
+			
+			<li>Grand Central Dispatch is used when scanning drives to improve responsiveness of the application.</li>
+			
+			<li>Added Italian localization</li>
+			
+			<li>Added support for Paragon NTFS drivers</li>
+		</ul>
+	</li>
+	<li>1.0.2
+		<ul>
+			<li>Fixed bug where BootChamp wouldn't recognize an NTFS drive if the MacFUSE NTFS-3G driver was installed</li>
+			<li>Cleaned up authentication dialog text to be clearer.</li>
+			<li>Properly localized the application. Polish now included.</li>
+		</ul>
+	</li>
+	<li>1.0.1
+		<ul>
+			<li>Fixed bug where some NTFS partitions weren't detected</li>
+			<li>Fixed bug where the app would quit if you cancelled the authentication</li>
+		</ul>
+	</li>
+	<li>1.0
+		<ul>
+			<li>Initial release for 10.5</li>
+		</ul>
+	</li>
+</ul>
+
+<p><strong>Credits</strong><br/>
+	Localizations:
+		<blockquote>Polish - Grzegorz Pawlik<br/>
+		Swedish - Pär Boberg<br/>
+		French - sly<br/>
+		Italian - Vincenzo Boiano</blockquote>
+
+	Application Icon:
+		<blockquote>Tobiasz Usewicz</blockquote>
+</p>
+
+<p><strong>Send Feedback</strong><br/>
+	Email <a href="mailto:kainjow@kainjow.com">kainjow@kainjow.com</a>
+</p>
+
+<p><strong>Website</strong><br/>
+	<a href="http://kainjow.com">http://kainjow.com</a>
+</p>
+
+
+</body>
+</html>

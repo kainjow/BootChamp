@@ -1,0 +1,548 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		A50D2B661050A0F1007F48C6 /* BOApplicationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A50D2B651050A0F1007F48C6 /* BOApplicationAdditions.m */; };
+		A51E570211D6682500E862B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AA6733106869C800E1F762 /* Carbon.framework */; };
+		A51E570811D6682A00E862B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A1083F0C3C8DBC006A3862 /* Security.framework */; };
+		A51E571A11D6701E00E862B8 /* BOHelperInstaller.c in Sources */ = {isa = PBXBuildFile; fileRef = A51E571911D6701E00E862B8 /* BOHelperInstaller.c */; };
+		A51E57E111D67AE500E862B8 /* BOTaskAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A51E57E011D67AE500E862B8 /* BOTaskAdditions.m */; };
+		A51E599211D691F500E862B8 /* BOHelperInstaller in Copy Executables */ = {isa = PBXBuildFile; fileRef = A51E571311D6700700E862B8 /* BOHelperInstaller */; };
+		A51E602C11D6DFEE00E862B8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51E602B11D6DFEE00E862B8 /* Cocoa.framework */; };
+		A58D8D6E0E6483160073F663 /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58D8D6D0E6483160073F663 /* DiskArbitration.framework */; };
+		A58EA2C20E7191DE008837F3 /* appicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A58EA2C10E7191DE008837F3 /* appicon.icns */; };
+		A58EA4350E719AF0008837F3 /* BOHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = A58EA4330E719ADE008837F3 /* BOHelper.c */; };
+		A5A106DE0C3C83AA006A3862 /* BOBoot.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A106DD0C3C83AA006A3862 /* BOBoot.m */; };
+		A5C23B6C10696C8400EBBECD /* help.htm in Resources */ = {isa = PBXBuildFile; fileRef = A5C23B6A10696C8400EBBECD /* help.htm */; };
+		A5C5CF070E766EA300F53F5A /* BOMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C5CF060E766EA300F53F5A /* BOMedia.m */; };
+		A5C5CF410E76734800F53F5A /* BOHelper in Copy Executables */ = {isa = PBXBuildFile; fileRef = A58EA42E0E719AA0008837F3 /* BOHelper */; };
+		A5D8A6490E21C3CA00F9756E /* BOStatusMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D8A6480E21C3CA00F9756E /* BOStatusMenuController.m */; };
+		A5DA47FF0E64938F001C5148 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5DA47FE0E64938F001C5148 /* Localizable.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A51E571F11D6711000E862B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A51E571211D6700700E862B8;
+			remoteInfo = BOHelperInstaller;
+		};
+		A58EA4B40E719F9D008837F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A58EA42D0E719AA0008837F3;
+			remoteInfo = bcbless;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A5C5CF430E76736600F53F5A /* Copy Executables */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				A5C5CF410E76734800F53F5A /* BOHelper in Copy Executables */,
+				A51E599211D691F500E862B8 /* BOHelperInstaller in Copy Executables */,
+			);
+			name = "Copy Executables";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* BootChamp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BootChamp_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* BootChamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BootChamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A50396C310FA668100C18FA4 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A50D29C61050997A007F48C6 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = French.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A50D2B641050A0F1007F48C6 /* BOApplicationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOApplicationAdditions.h; sourceTree = "<group>"; };
+		A50D2B651050A0F1007F48C6 /* BOApplicationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOApplicationAdditions.m; sourceTree = "<group>"; };
+		A51E571311D6700700E862B8 /* BOHelperInstaller */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelperInstaller; sourceTree = BUILT_PRODUCTS_DIR; };
+		A51E571911D6701E00E862B8 /* BOHelperInstaller.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BOHelperInstaller.c; sourceTree = "<group>"; };
+		A51E57DF11D67AE500E862B8 /* BOTaskAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOTaskAdditions.h; sourceTree = "<group>"; };
+		A51E57E011D67AE500E862B8 /* BOTaskAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOTaskAdditions.m; sourceTree = "<group>"; };
+		A51E602B11D6DFEE00E862B8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		A570E6C80E6847D70057731F /* Swedish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Swedish; path = Swedish.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A58D8D6D0E6483160073F663 /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = /System/Library/Frameworks/DiskArbitration.framework; sourceTree = "<absolute>"; };
+		A58EA2C10E7191DE008837F3 /* appicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appicon.icns; sourceTree = "<group>"; };
+		A58EA42E0E719AA0008837F3 /* BOHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelper; sourceTree = BUILT_PRODUCTS_DIR; };
+		A58EA4330E719ADE008837F3 /* BOHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = BOHelper.c; sourceTree = "<group>"; };
+		A5A106DC0C3C83AA006A3862 /* BOBoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOBoot.h; sourceTree = "<group>"; };
+		A5A106DD0C3C83AA006A3862 /* BOBoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOBoot.m; sourceTree = "<group>"; };
+		A5A1083F0C3C8DBC006A3862 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		A5AA6733106869C800E1F762 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		A5C23B6B10696C8400EBBECD /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = English; path = English.lproj/help.htm; sourceTree = "<group>"; };
+		A5C5CF050E766EA300F53F5A /* BOMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOMedia.h; sourceTree = "<group>"; };
+		A5C5CF060E766EA300F53F5A /* BOMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOMedia.m; sourceTree = "<group>"; };
+		A5C81DA211D75BFE0026E930 /* BOHelperInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOHelperInstaller.h; sourceTree = "<group>"; };
+		A5D8A6470E21C3CA00F9756E /* BOStatusMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOStatusMenuController.h; sourceTree = "<group>"; };
+		A5D8A6480E21C3CA00F9756E /* BOStatusMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BOStatusMenuController.m; sourceTree = "<group>"; };
+		A5DA47FC0E64938B001C5148 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5DA48460E6494C9001C5148 /* Polish */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Polish; path = Polish.lproj/Localizable.strings; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A58D8D6E0E6483160073F663 /* DiskArbitration.framework in Frameworks */,
+				A51E570211D6682500E862B8 /* Carbon.framework in Frameworks */,
+				A51E570811D6682A00E862B8 /* Security.framework in Frameworks */,
+				A51E602C11D6DFEE00E862B8 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51E571111D6700700E862B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A58EA42C0E719AA0008837F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* BootChamp_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+				A5D8A6470E21C3CA00F9756E /* BOStatusMenuController.h */,
+				A5D8A6480E21C3CA00F9756E /* BOStatusMenuController.m */,
+				A5A106DC0C3C83AA006A3862 /* BOBoot.h */,
+				A5A106DD0C3C83AA006A3862 /* BOBoot.m */,
+				A5C5CF050E766EA300F53F5A /* BOMedia.h */,
+				A5C5CF060E766EA300F53F5A /* BOMedia.m */,
+				A51E57DF11D67AE500E862B8 /* BOTaskAdditions.h */,
+				A51E57E011D67AE500E862B8 /* BOTaskAdditions.m */,
+				A50D2B641050A0F1007F48C6 /* BOApplicationAdditions.h */,
+				A50D2B651050A0F1007F48C6 /* BOApplicationAdditions.m */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* BootChamp.app */,
+				A58EA42E0E719AA0008837F3 /* BOHelper */,
+				A51E571311D6700700E862B8 /* BOHelperInstaller */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* BootChamp */ = {
+			isa = PBXGroup;
+			children = (
+				A58EA4330E719ADE008837F3 /* BOHelper.c */,
+				A5C81DA211D75BFE0026E930 /* BOHelperInstaller.h */,
+				A51E571911D6701E00E862B8 /* BOHelperInstaller.c */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = BootChamp;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A58EA2C10E7191DE008837F3 /* appicon.icns */,
+				A5DA47FE0E64938F001C5148 /* Localizable.strings */,
+				A5C23B6A10696C8400EBBECD /* help.htm */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A51E602B11D6DFEE00E862B8 /* Cocoa.framework */,
+				A58D8D6D0E6483160073F663 /* DiskArbitration.framework */,
+				A5A1083F0C3C8DBC006A3862 /* Security.framework */,
+				A5AA6733106869C800E1F762 /* Carbon.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* BootChamp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BootChamp" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				A5C5CF430E76736600F53F5A /* Copy Executables */,
+				A5B417BE1069A25200B891BB /* Run genstrings */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A58EA4B50E719F9D008837F3 /* PBXTargetDependency */,
+				A51E572011D6711000E862B8 /* PBXTargetDependency */,
+			);
+			name = BootChamp;
+			productInstallPath = "$(HOME)/Applications";
+			productName = BootChamp;
+			productReference = 8D1107320486CEB800E47090 /* BootChamp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A51E571211D6700700E862B8 /* BOHelperInstaller */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A51E571711D6700F00E862B8 /* Build configuration list for PBXNativeTarget "BOHelperInstaller" */;
+			buildPhases = (
+				A51E571011D6700700E862B8 /* Sources */,
+				A51E571111D6700700E862B8 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BOHelperInstaller;
+			productName = BOHelperInstaller;
+			productReference = A51E571311D6700700E862B8 /* BOHelperInstaller */;
+			productType = "com.apple.product-type.tool";
+		};
+		A58EA42D0E719AA0008837F3 /* BOHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A58EA4320E719ACC008837F3 /* Build configuration list for PBXNativeTarget "BOHelper" */;
+			buildPhases = (
+				A58EA42B0E719AA0008837F3 /* Sources */,
+				A58EA42C0E719AA0008837F3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BOHelper;
+			productName = bcbless;
+			productReference = A58EA42E0E719AA0008837F3 /* BOHelper */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BootChamp" */;
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				Polish,
+				Swedish,
+				Italian,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* BootChamp */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* BootChamp */,
+				A58EA42D0E719AA0008837F3 /* BOHelper */,
+				A51E571211D6700700E862B8 /* BOHelperInstaller */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5DA47FF0E64938F001C5148 /* Localizable.strings in Resources */,
+				A58EA2C20E7191DE008837F3 /* appicon.icns in Resources */,
+				A5C23B6C10696C8400EBBECD /* help.htm in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A5B417BE1069A25200B891BB /* Run genstrings */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run genstrings";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mdfind \"kMDItemKind == '*source*' || kMDItemKind == '*Header*'\" -onlyin . | xargs genstrings -o English.lproj\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				A5A106DE0C3C83AA006A3862 /* BOBoot.m in Sources */,
+				A5D8A6490E21C3CA00F9756E /* BOStatusMenuController.m in Sources */,
+				A5C5CF070E766EA300F53F5A /* BOMedia.m in Sources */,
+				A50D2B661050A0F1007F48C6 /* BOApplicationAdditions.m in Sources */,
+				A51E57E111D67AE500E862B8 /* BOTaskAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A51E571011D6700700E862B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A51E571A11D6701E00E862B8 /* BOHelperInstaller.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A58EA42B0E719AA0008837F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A58EA4350E719AF0008837F3 /* BOHelper.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A51E572011D6711000E862B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A51E571211D6700700E862B8 /* BOHelperInstaller */;
+			targetProxy = A51E571F11D6711000E862B8 /* PBXContainerItemProxy */;
+		};
+		A58EA4B50E719F9D008837F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A58EA42D0E719AA0008837F3 /* BOHelper */;
+			targetProxy = A58EA4B40E719F9D008837F3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A5C23B6A10696C8400EBBECD /* help.htm */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5C23B6B10696C8400EBBECD /* English */,
+			);
+			name = help.htm;
+			sourceTree = "<group>";
+		};
+		A5DA47FE0E64938F001C5148 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5DA47FC0E64938B001C5148 /* English */,
+				A5DA48460E6494C9001C5148 /* Polish */,
+				A570E6C80E6847D70057731F /* Swedish */,
+				A50D29C61050997A007F48C6 /* French */,
+				A50396C310FA668100C18FA4 /* Italian */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A51E571511D6700700E862B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = BOHELPERINSTALLER;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = BOHelperInstaller;
+			};
+			name = Debug;
+		};
+		A51E571611D6700700E862B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = BOHELPERINSTALLER;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
+				PRODUCT_NAME = BOHelperInstaller;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		A58EA4300E719AA1008837F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = BOHELPER;
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = BOHelper;
+			};
+			name = Debug;
+		};
+		A58EA4310E719AA1008837F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = BOHELPER;
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
+				PRODUCT_NAME = BOHelper;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = BOAPP;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = BootChamp;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = BOAPP;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = BootChamp;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BootChamp_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.6][arch=*]" = 10.6;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+				"SDKROOT[arch=x86_64]" = macosx10.6;
+				VALID_ARCHS = "i386 x86_64";
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BootChamp_Prefix.pch;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.6][arch=*]" = 10.6;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+				"SDKROOT[arch=x86_64]" = macosx10.6;
+				VALID_ARCHS = "i386 x86_64";
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A51E571711D6700F00E862B8 /* Build configuration list for PBXNativeTarget "BOHelperInstaller" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A51E571511D6700700E862B8 /* Debug */,
+				A51E571611D6700700E862B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A58EA4320E719ACC008837F3 /* Build configuration list for PBXNativeTarget "BOHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A58EA4300E719AA1008837F3 /* Debug */,
+				A58EA4310E719AA1008837F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "BootChamp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BootChamp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
