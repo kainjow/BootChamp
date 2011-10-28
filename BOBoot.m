@@ -124,7 +124,7 @@ BOOL BOAuthorizationRequired()
 	return NO;
 }
 
-BOOL BOBoot(BOMedia *media, BOOL nextOnly, NSError **error)
+BOOL BOBoot(BOMedia *media, NSError **error)
 {
 	if (!media) {
 		if (error)
@@ -167,7 +167,11 @@ BOOL BOBoot(BOMedia *media, BOOL nextOnly, NSError **error)
 		[args addObject:media.mountPoint];
 	}
 	[args addObject:@"-nextonly"];
-	[args addObject:nextOnly ? @"yes" : @"no"];
+	[args addObject:@"yes"];
+	// --nextonly used to be a user-settable preference in 1.2 and previous versions,
+	// but in 1.2.1 it was removed, but we keep it here for now in the app to stay
+	// compatible with older versions of the helper tool so the user doesn't have to
+	// reinstall it.
 	
 	ret = [NSTask launchTaskAtPath:toolDest arguments:args output:&output];
 	switch (ret) {
