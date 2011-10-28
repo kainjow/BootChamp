@@ -10,9 +10,6 @@
 		font-family: "lucida grande";
 		font-size: 10pt;
 	}
-	#important {
-		color: red;
-	}
 	</style>
 </head>
 
@@ -20,11 +17,46 @@
 
 <h2><a name="main">BootChamp Help</a></h2>
 
+<p><strong>About</strong></p>
 <p>BootChamp is a small utility for quickly booting into Windows.</p>
 
-<p>How is this different than selecting your Windows volume from within Startup Disk in System Preferences? Using Startup Disk actually changes your startup disk permanently so that each time you restart, it boots into whatever you have selected. What this program is doing is the same thing that happens when you hold down Option at startup and select Windows. However, the app only requires a single click and your admin password, and then it restarts your computer into Windows without further input from you. It will not actually change your startup disk.</p>
+<p>BootChamp greatly simplifies the way you can boot into your Boot Camp partition. Traditionally you would either open System Preferences and select your drive or restart and hold down the Option key. Both of these processes are cumbersome and take time. BootChamp reduces this task to a single menu.</p>
 
-<p><strong>Release Notes:</strong><br/>
+<p>The first time a restart is initiated with BootChamp, it will ask for the admin password. After this initial process, you will no longer need to enter your admin password again.</p>
+
+<p>The next time you restart your computer, whether it's from within Windows or from turning on your computer, the original startup disk will be used. BootChamp does not modify your startup disk, it only temporarily sets the startup disk for the next restart.</p>
+
+<p><strong>Troubleshooting</strong></p>
+<p>
+<em>The "Restart into Windows" menu is disabled.</em><br/>
+Make sure your Boot Camp volume is mounted and visible in the Finder.
+</p>
+<p>
+<em>I am getting an "authentication failed" or "must run as root" error.</em><br/>
+Delete the /Library/Application Support/BootChamp/BOHelper file and try again.
+</p>
+
+<p><strong>Uninstall</strong></p>
+<p>To uninstall, remove BootChamp.app from where you installed it, remove /Library/Application Support/BootChamp/BOHelper, and remove BootChamp from the Login Items in System Preferences > Accounts.</p>
+
+<p><strong>Credits</strong></p>
+<p>
+	Programming: Kevin Wojniak<br/>
+	<br/>
+	Application Icon: Tobiasz Usewicz<br/>
+	Polish Localization: Grzegorz Pawlik<br/>
+	Swedish Localization: Pär Boberg<br/>
+	French Localization: sly, Slagt<br/>
+	Italian Localization: Vincenzo Boiano
+</p>
+
+<p><strong>Contact</strong></p>
+<p>
+	Email <a href="mailto:kainjow@kainjow.com">kainjow@kainjow.com</a><br/>
+	Website: <a href="http://kainjow.com">http://kainjow.com</a>
+</p>
+
+<p><strong>Release Notes:</strong></p>
 <ul>
 	<li>1.2.1
 		<ul>
@@ -44,7 +76,7 @@
 	<li>1.1
 		<ul>
 			<li>Requires 10.6 or greater. Built as a 32/64-bit binary.</li>
-			<li><span id="important">Important:</span> BootChamp's abilitiy to temporarily set the startup disk does not work with the unibody family of MacBooks, which includes the Air and Pro (and possibly newer Mac Pros). As far as I'm aware, this is an Apple bug. Previous versions of BootChamp would restart but would not boot into Windows. This new version adds a workaround preference "Next restart only" which is enabled by default. In order for the app to work on these newer computers, you <em>must</em> disable this preference. Unfortunatey, this workaround will set the start disk for all future restarts, so you must change it back when restarting back into Mac OS X. <b><u>Note: this appears to be fixed in 10.6.3.</u></b>
+			<li>Important: BootChamp's abilitiy to temporarily set the startup disk does not work with the unibody family of MacBooks, which includes the Air and Pro (and possibly newer Mac Pros). As far as I'm aware, this is an Apple bug. Previous versions of BootChamp would restart but would not boot into Windows. This new version adds a workaround preference "Next restart only" which is enabled by default. In order for the app to work on these newer computers, you <em>must</em> disable this preference. Unfortunatey, this workaround will set the start disk for all future restarts, so you must change it back when restarting back into Mac OS X. <b><u>Note: this appears to be fixed in 10.6.3.</u></b>
 			</li>
 	
 			<li>Added a preference "Launch at startup" enabled by default.</li>
@@ -77,26 +109,6 @@
 		</ul>
 	</li>
 </ul>
-
-<p><strong>Credits</strong><br/>
-	Localizations:
-		<blockquote>Polish - Grzegorz Pawlik<br/>
-		Swedish - Pär Boberg<br/>
-		French - sly, Slagt<br/>
-		Italian - Vincenzo Boiano</blockquote>
-
-	Application Icon:
-		<blockquote>Tobiasz Usewicz</blockquote>
-</p>
-
-<p><strong>Send Feedback</strong><br/>
-	Email <a href="mailto:kainjow@kainjow.com">kainjow@kainjow.com</a>
-</p>
-
-<p><strong>Website</strong><br/>
-	<a href="http://kainjow.com">http://kainjow.com</a>
-</p>
-
 
 </body>
 </html>
