@@ -103,20 +103,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A51E571111D6700700E862B8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A58EA42C0E719AA0008837F3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -215,7 +201,6 @@
 			buildConfigurationList = A51E571711D6700F00E862B8 /* Build configuration list for PBXNativeTarget "BOHelperInstaller" */;
 			buildPhases = (
 				A51E571011D6700700E862B8 /* Sources */,
-				A51E571111D6700700E862B8 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -231,7 +216,6 @@
 			buildConfigurationList = A58EA4320E719ACC008837F3 /* Build configuration list for PBXNativeTarget "BOHelper" */;
 			buildPhases = (
 				A58EA42B0E719AA0008837F3 /* Sources */,
-				A58EA42C0E719AA0008837F3 /* Frameworks */,
 			);
 			buildRules = (
 			);
