@@ -30,7 +30,7 @@
 	NSImage *img = [[NSImage alloc] initWithSize:NSMakeSize(22.0, 22.0)];
 	NSRect bounds = NSMakeRect(0.0, 0.0, [img size].width, [img size].height);
 	NSSize size = NSMakeSize(5.0, 5.0);
-	NSRect drawBounds;
+	NSRect drawBounds = NSZeroRect;
 	drawBounds.size = NSMakeSize(size.width*2+1.5, size.height*2+1.5);
 	drawBounds.origin = NSMakePoint(NSMinX(bounds) + floor((NSWidth(bounds)-NSWidth(drawBounds))/2),
 									NSMinY(bounds) + floor((NSHeight(bounds)-NSHeight(drawBounds))/2));
