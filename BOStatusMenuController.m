@@ -101,6 +101,7 @@
 	if (BOAuthorizationRequired() && ([bootMenuItem target] || [bootMenuItem submenu])) {
 		restartTitle = [restartTitle stringByAppendingString:@"\u2026"];
 	}
+	[bootMenuItem setTitle:restartTitle];
 }
 
 - (void)updateBootMenuWithMedia:(NSArray *)media
