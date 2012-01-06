@@ -3,7 +3,7 @@
 //  BootChamp
 //
 //  Created by Kevin Wojniak on 7/6/08.
-//  Copyright 2008-2010 Kevin Wojniak. All rights reserved.
+//  Copyright 2008-2012 Kevin Wojniak. All rights reserved.
 //
 
 #import "BOStatusMenuController.h"
@@ -154,7 +154,6 @@
 	[bootMenuItem setSubmenu:nil];
 	[bootMenuItem setRepresentedObject:nil];
 	
-#if MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_6
 	// (10.6+) load media objects in the background and call back to self with updateBootMenuWithMedia: when done
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 	dispatch_async(queue, ^{
@@ -163,10 +162,6 @@
 			[self updateBootMenuWithMedia:media];
 		});
 	});
-#else
-	// 10.5
-	[self updateBootMenuWithMedia:[BOMedia allMedia]];
-#endif
 }
 
 - (void)menuNeedsUpdate:(NSMenu *)menu

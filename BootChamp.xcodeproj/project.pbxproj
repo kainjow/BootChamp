@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50FF09B14B6B5C300EA561F /* help.htm in Resources */ = {isa = PBXBuildFile; fileRef = A50FF09914B6B5C300EA561F /* help.htm */; };
 		A51E570211D6682500E862B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AA6733106869C800E1F762 /* Carbon.framework */; };
 		A51E570811D6682A00E862B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A1083F0C3C8DBC006A3862 /* Security.framework */; };
 		A51E599211D691F500E862B8 /* BOHelperInstaller in Copy Executables */ = {isa = PBXBuildFile; fileRef = A51E571311D6700700E862B8 /* BOHelperInstaller */; };
@@ -14,7 +15,6 @@
 		A58D8D6E0E6483160073F663 /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58D8D6D0E6483160073F663 /* DiskArbitration.framework */; };
 		A58EA2C20E7191DE008837F3 /* appicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A58EA2C10E7191DE008837F3 /* appicon.icns */; };
 		A5C5CF410E76734800F53F5A /* BOHelper in Copy Executables */ = {isa = PBXBuildFile; fileRef = A58EA42E0E719AA0008837F3 /* BOHelper */; };
-		A5E57FF6145A499D00F07C69 /* help.htm in Resources */ = {isa = PBXBuildFile; fileRef = A5E57FF4145A499D00F07C69 /* help.htm */; };
 		A5E57FF9145A49E500F07C69 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5E57FF7145A49E500F07C69 /* Localizable.strings */; };
 		A5E58014145A4AC000F07C69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58012145A4AC000F07C69 /* main.m */; };
 		A5E58019145A4ACD00F07C69 /* BOStatusMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58017145A4ACD00F07C69 /* BOStatusMenuController.m */; };
@@ -61,6 +61,7 @@
 /* Begin PBXFileReference section */
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* BootChamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BootChamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A50FF09A14B6B5C300EA561F /* English */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = English; path = Resources/English.lproj/help.htm; sourceTree = "<group>"; };
 		A51E571311D6700700E862B8 /* BOHelperInstaller */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelperInstaller; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51E602B11D6DFEE00E862B8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		A58D8D6D0E6483160073F663 /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = /System/Library/Frameworks/DiskArbitration.framework; sourceTree = "<absolute>"; };
@@ -68,12 +69,11 @@
 		A58EA42E0E719AA0008837F3 /* BOHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelper; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5A1083F0C3C8DBC006A3862 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		A5AA6733106869C800E1F762 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		A5E57FF5145A499D00F07C69 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = English; path = Resources/English.lproj/help.htm; sourceTree = "<group>"; };
 		A5E57FF8145A49E500F07C69 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Resources/English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A5E57FFF145A49F500F07C69 /* French */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = French; path = Resources/French.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A5E58000145A49F800F07C69 /* Italian */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Italian; path = Resources/Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A5E58001145A49FA00F07C69 /* Polish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Polish; path = Resources/Polish.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A5E58002145A49FD00F07C69 /* Swedish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Swedish; path = Resources/Swedish.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5E57FFF145A49F500F07C69 /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = Resources/French.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5E58000145A49F800F07C69 /* Italian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Italian; path = Resources/Italian.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5E58001145A49FA00F07C69 /* Polish */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Polish; path = Resources/Polish.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5E58002145A49FD00F07C69 /* Swedish */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Swedish; path = Resources/Swedish.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E5800E145A4AB000F07C69 /* BOHelperInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOHelperInstaller.h; path = Sources/BOHelperInstaller.h; sourceTree = "<group>"; };
 		A5E5800F145A4AB000F07C69 /* BOHelperInstaller.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BOHelperInstaller.c; path = Sources/BOHelperInstaller.c; sourceTree = "<group>"; };
 		A5E58010145A4AB000F07C69 /* BOHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BOHelper.c; path = Sources/BOHelper.c; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		080E96DDFE201D6D7F000001 /* BootChamp */ = {
 			isa = PBXGroup;
 			children = (
 				A5E58013145A4AC000F07C69 /* BootChamp_Prefix.pch */,
@@ -123,7 +123,7 @@
 				A5E58027145A4AF100F07C69 /* BOApplicationAdditions.m */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
-			name = Classes;
+			name = BootChamp;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -139,10 +139,9 @@
 		29B97314FDCFA39411CA2CEA /* BootChamp */ = {
 			isa = PBXGroup;
 			children = (
-				A5E58010145A4AB000F07C69 /* BOHelper.c */,
-				A5E5800E145A4AB000F07C69 /* BOHelperInstaller.h */,
-				A5E5800F145A4AB000F07C69 /* BOHelperInstaller.c */,
-				080E96DDFE201D6D7F000001 /* Classes */,
+				A50FF09814B6B57800EA561F /* BOHelper */,
+				A50FF09C14B6B5CD00EA561F /* BOHelperInstaller */,
+				080E96DDFE201D6D7F000001 /* BootChamp */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -155,7 +154,7 @@
 			children = (
 				A58EA2C10E7191DE008837F3 /* appicon.icns */,
 				A5E57FF7145A49E500F07C69 /* Localizable.strings */,
-				A5E57FF4145A499D00F07C69 /* help.htm */,
+				A50FF09914B6B5C300EA561F /* help.htm */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -169,6 +168,23 @@
 				A5AA6733106869C800E1F762 /* Carbon.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A50FF09814B6B57800EA561F /* BOHelper */ = {
+			isa = PBXGroup;
+			children = (
+				A5E58010145A4AB000F07C69 /* BOHelper.c */,
+			);
+			name = BOHelper;
+			sourceTree = "<group>";
+		};
+		A50FF09C14B6B5CD00EA561F /* BOHelperInstaller */ = {
+			isa = PBXGroup;
+			children = (
+				A5E5800E145A4AB000F07C69 /* BOHelperInstaller.h */,
+				A5E5800F145A4AB000F07C69 /* BOHelperInstaller.c */,
+			);
+			name = BOHelperInstaller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +247,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BootChamp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -261,8 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A58EA2C20E7191DE008837F3 /* appicon.icns in Resources */,
-				A5E57FF6145A499D00F07C69 /* help.htm in Resources */,
 				A5E57FF9145A49E500F07C69 /* Localizable.strings in Resources */,
+				A50FF09B14B6B5C300EA561F /* help.htm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,10 +350,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A5E57FF4145A499D00F07C69 /* help.htm */ = {
+		A50FF09914B6B5C300EA561F /* help.htm */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A5E57FF5145A499D00F07C69 /* English */,
+				A50FF09A14B6B5C300EA561F /* English */,
 			);
 			name = help.htm;
 			sourceTree = "<group>";
@@ -360,12 +379,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = BOHELPERINSTALLER;
 				INSTALL_PATH = /usr/local/bin;
-				PREBINDING = NO;
 				PRODUCT_NAME = BOHelperInstaller;
 			};
 			name = Debug;
@@ -376,11 +393,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PREPROCESSOR_DEFINITIONS = BOHELPERINSTALLER;
 				INSTALL_PATH = /usr/local/bin;
-				PREBINDING = NO;
 				PRODUCT_NAME = BOHelperInstaller;
 				ZERO_LINK = NO;
 			};
@@ -392,13 +407,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_PREPROCESSOR_DEFINITIONS = BOHELPER;
-				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = BOHelper;
 			};
@@ -409,10 +422,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PREPROCESSOR_DEFINITIONS = BOHELPER;
-				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_NAME = BOHelper;
 				ZERO_LINK = NO;
@@ -424,7 +435,6 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -461,8 +471,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.6][arch=*]" = 10.6;
-				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 				"SDKROOT[arch=x86_64]" = macosx10.6;
 				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = "-Wall";
@@ -480,8 +489,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"MACOSX_DEPLOYMENT_TARGET[sdk=macosx10.6][arch=*]" = 10.6;
-				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 				"SDKROOT[arch=x86_64]" = macosx10.6;
 				VALID_ARCHS = "i386 x86_64";
 				WARNING_CFLAGS = "-Wall";

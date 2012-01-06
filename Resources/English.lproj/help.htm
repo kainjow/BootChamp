@@ -17,7 +17,7 @@
 
 <h2><a name="main">BootChamp Help</a></h2>
 
-<p><strong>About</strong></p>
+<h3>About</h3>
 <p>BootChamp is a small utility for quickly booting into Windows.</p>
 
 <p>BootChamp greatly simplifies the way you can boot into your Boot Camp partition. Traditionally you would either open System Preferences and select your drive or restart and hold down the Option key. Both of these processes are cumbersome and take time. BootChamp reduces this task to a single menu.</p>
@@ -26,20 +26,16 @@
 
 <p>The next time you restart your computer, whether it's from within Windows or from turning on your computer, the original startup disk will be used. BootChamp does not modify your startup disk, it only temporarily sets the startup disk for the next restart.</p>
 
-<p><strong>Troubleshooting</strong></p>
-<p>
-<em>The "Restart into Windows" menu is disabled.</em><br/>
-Make sure your Boot Camp volume is mounted and visible in the Finder.
-</p>
-<p>
-<em>I am getting an "authentication failed" or "must run as root" error.</em><br/>
-Delete the /Library/Application Support/BootChamp/BOHelper file and try again.
-</p>
+<h3>Troubleshooting</h3>
+<h4>The "Restart into Windows" menu is disabled.</h4>
+<p>Make sure your Boot Camp volume is mounted and visible in the Finder.</p>
+<h4>I am getting an "authentication failed" or "must run as root" error.</h4>
+<p>Delete the /Library/Application Support/BootChamp/BOHelper file and try again.</p>
 
-<p><strong>Uninstall</strong></p>
+<h3>Uninstall</h3>
 <p>To uninstall, remove BootChamp.app from where you installed it, remove /Library/Application Support/BootChamp/BOHelper, and remove BootChamp from the Login Items in System Preferences > Accounts.</p>
 
-<p><strong>Credits</strong></p>
+<h3>Credits</h3>
 <p>
 	Programming: Kevin Wojniak<br/>
 	<br/>
@@ -50,18 +46,19 @@ Delete the /Library/Application Support/BootChamp/BOHelper file and try again.
 	Italian Localization: Vincenzo Boiano
 </p>
 
-<p><strong>Contact</strong></p>
+<h3>Contact</h3>
 <p>
 	Email <a href="mailto:kainjow@kainjow.com">kainjow@kainjow.com</a><br/>
 	Website: <a href="http://kainjow.com">http://kainjow.com</a>
 </p>
 
-<p><strong>Release Notes:</strong></p>
+<h3>Release Notes:</h3>
 <ul>
 	<li>1.2.1
 		<ul>
 			<li>Updated French localization</li>
 			<li>Removed obsolete "Next restart only" preference.</li>
+			<li>BootChamp now requires 10.6.8 os greater.</li>
 		</ul>
 	</li>
 	<li>1.2
