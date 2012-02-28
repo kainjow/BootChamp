@@ -6,16 +6,16 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A58EA42D0E719AA0008837F3"
-               BuildableName = "BOHelper"
-               BlueprintName = "BOHelper"
+               BlueprintIdentifier = "8D1107260486CEB800E47090"
+               BuildableName = "BootChamp.app"
+               BlueprintName = "BootChamp"
                ReferencedContainer = "container:BootChamp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,9 +31,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A58EA42D0E719AA0008837F3"
-            BuildableName = "BOHelper"
-            BlueprintName = "BOHelper"
+            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BuildableName = "BootChamp.app"
+            BlueprintName = "BootChamp"
             ReferencedContainer = "container:BootChamp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -49,9 +49,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A58EA42D0E719AA0008837F3"
-            BuildableName = "BOHelper"
-            BlueprintName = "BOHelper"
+            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BuildableName = "BootChamp.app"
+            BlueprintName = "BootChamp"
             ReferencedContainer = "container:BootChamp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -67,9 +67,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A58EA42D0E719AA0008837F3"
-            BuildableName = "BOHelper"
-            BlueprintName = "BOHelper"
+            BlueprintIdentifier = "8D1107260486CEB800E47090"
+            BuildableName = "BootChamp.app"
+            BlueprintName = "BootChamp"
             ReferencedContainer = "container:BootChamp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
