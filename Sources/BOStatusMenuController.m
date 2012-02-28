@@ -173,7 +173,18 @@
 {
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
 	[statusItem setHighlightMode:YES];
-	[statusItem setImage:[self statusImage]];
+    
+    // Allow the user to specify a custom image via:
+    // $ defaults write com.kainjow.BootChamp StatusImage <path>
+    NSString *statusImagePath = [[NSUserDefaults standardUserDefaults] objectForKey:@"StatusImage"];
+    NSImage *statusImage = nil;
+    if (statusImagePath != nil) {
+        statusImage = [[[NSImage alloc] initWithContentsOfFile:statusImagePath] autorelease];
+    }
+    if (statusImage == nil) {
+        statusImage = [self statusImage];
+    }
+	[statusItem setImage:statusImage];
 	
 	NSMenu *menu = [[[NSMenu alloc] init] autorelease];
 	[menu setDelegate:self];
