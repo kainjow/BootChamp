@@ -183,7 +183,14 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 			return NO;
 	}
 	
-	if (output && [output length] > 0) {
+    if (output != nil) {
+        output = [output stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    }
+    
+    // ignore output if it's (seen on 10.8.1):
+    // dyld: DYLD_ environment variables being ignored because main executable (/Library/Application Support/BootChamp/BOHelper) is setuid or setgid
+    BOOL ignoreOutput = (output != nil && [output hasPrefix:@"dyld: DYLD_"] && [output hasSuffix:@"is setuid or setgid"]);
+	if (output && [output length] > 0 && !ignoreOutput) {
 		if (error)
 			*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:[NSDictionary dictionaryWithObject:output forKey:NSLocalizedDescriptionKey]];
 		return NO;
