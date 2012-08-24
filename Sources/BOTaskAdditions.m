@@ -44,13 +44,16 @@
 	
 	char **args = NULL;
 	if (arguments && [arguments count] > 0) {
-		args = calloc([arguments count] + 1, sizeof(char**));
+		args = calloc([arguments count] + 1, sizeof(char*));
 		for (NSInteger i=0; i<[arguments count]; i++)
 			args[i] = (char *)[[arguments objectAtIndex:i] UTF8String];
 	}
 	
 	FILE *file = NULL;
 	status = AuthorizationExecuteWithPrivileges(authorizationRef, cpath, kAuthorizationFlagDefaults, args, output ? &file : NULL);
+    if (args != NULL) {
+        free(args);
+    }
 	AuthorizationFree(authorizationRef, kAuthorizationFlagDefaults/*kAuthorizationFlagDestroyRights*/);
 	if (status != errAuthorizationSuccess) {
 		if (status == errAuthorizationCanceled)
