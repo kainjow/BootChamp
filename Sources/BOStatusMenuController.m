@@ -200,9 +200,11 @@
 	
 	[menu addItem:[NSMenuItem separatorItem]];
 	
-	[menu addItemWithTitle:NSLocalizedString(@"Preferences", "preferences title menu item") action:nil keyEquivalent:@""];
+	NSMenuItem *prefsMenuItem = [menu addItemWithTitle:NSLocalizedString(@"Preferences", "preferences title menu item") action:nil keyEquivalent:@""];
+    NSMenu *prefsSubMenu = [[[NSMenu alloc] init] autorelease];
+    [prefsMenuItem setSubmenu:prefsSubMenu];
 	NSMenuItem *menuItem;
-	menuItem = [menu addItemWithTitle:NSLocalizedString(@"Launch at startup", "launch at startup menu item") action:@selector(preferenceAction:) keyEquivalent:@""];
+	menuItem = [prefsSubMenu addItemWithTitle:NSLocalizedString(@"Launch at startup", "launch at startup menu item") action:@selector(preferenceAction:) keyEquivalent:@""];
 	[menuItem setIndentationLevel:1];
 	[menuItem setRepresentedObject:BOPrefsLaunchAtStartup];
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:BOPrefsLaunchAtStartup])
