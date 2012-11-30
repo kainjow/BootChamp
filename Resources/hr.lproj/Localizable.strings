@@ -1,0 +1,16 @@
+{
+    "Administrative access is needed to change your startup disk to \"%@\"." = "Za promjenu pokreta\U010dkog diska \"%@\" potreban je administrativni pristup.";
+    "Authentication may have failed." = "Provjera mo\U017eda nije uspjela";
+    "BootChamp Help" = "BootChamp pomo\U0107";
+    "BootChamp was unable to find a Windows volume" = "BootChamp nije bio u mogu\U0107nosti prona\U0107i Windows";
+    "BootChamp was unable to install its required helper tool." = "BootChamp nije bio u mogu\U0107nosti instalirati potreban alat pomo\U0107i.";
+    "BootChamp was unable to restart your computer" = "BootChamp nije bio u mogu\U0107nosti ponovno pokrenuti ra\U010dunalo";
+    "BootChamp was unable to set your Windows volume as the temporary startup disk" = "BootChamp nije bio u mogu\U0107nosti postaviti Windowse kao privremeni pokreta\U010dki disk";
+    "Launch at startup" = "Prijava kod pokretanja";
+    "Please restart your computer manually." = "Molimo ponovno pokrenite ru\U010dno";
+    Preferences = Postavke;
+    Quit = "Zatvori BootChamp";
+    "Restart into Windows" = "Pokreni Windows";
+    "Supported file systems are FAT32 and NTFS." = "Podr\U017eani datote\U010dni sustavi su FAT32 i NTFS.";
+    "Updating\U2026" = "A\U017euriranje\U2026";
+}
