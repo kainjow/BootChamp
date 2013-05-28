@@ -80,8 +80,13 @@
 		
 		if (isValidBootCampVolume)
 		{
-			media.mountPoint = [mountURL path];
-			media.name = [media.mountPoint lastPathComponent];
+            NSString *mountPoint = [mountURL path];
+			media.mountPoint = mountPoint;
+            if (mountPoint != nil) {
+                media.name = [mountPoint lastPathComponent];
+            } else {
+                media.name = (NSString*)CFDictionaryGetValue(desc, kDADiskDescriptionVolumeNameKey);
+            }
 			[array addObject:media];
 		}
 		
