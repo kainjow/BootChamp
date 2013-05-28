@@ -21,13 +21,24 @@
 
 @implementation BOMedia
 
-@synthesize mountPoint, deviceName, name;
+@synthesize mountPoint = mountPoint_;
+@synthesize deviceName = deviceName_;
+@synthesize name = name_;
+
++ (BOOL)isBootableVolume:(NSString*)path
+{
+    NSFileManager *fm = [[[NSFileManager alloc] init] autorelease];
+    NSString *sys32Folder = [[path stringByAppendingPathComponent:@"Windows"] stringByAppendingPathComponent:@"System32"];
+    if ([fm fileExistsAtPath:sys32Folder]) {
+        return YES;
+    }
+    return NO;
+}
 
 + (NSArray *)allMedia
 {
 	DASessionRef session = DASessionCreate(kCFAllocatorDefault);
-	if (!session)
-	{
+	if (!session) {
 		NSLog(@"DASessionCreate failed.");
 		return nil;
 	}
@@ -37,20 +48,17 @@
 	NSMutableArray *array = [NSMutableArray array];
 	struct statfs *buf = NULL;
 	int count = getmntinfo(&buf, 0);
-	for (int i=0; i<count; i++)
-	{
+	for (int i=0; i<count; i++) {
 		const char *bsdName = buf[i].f_mntfromname;
 		DADiskRef disk = DADiskCreateFromBSDName(kCFAllocatorDefault, session, bsdName);
-		if (!disk)
-		{
+		if (!disk) {
 			NSLog(@"DADiskCreateFromBSDName failed for %s", bsdName);
 			continue;
 		}
 		
 		CFDictionaryRef desc = DADiskCopyDescription(disk);
 		CFRelease(disk);
-		if (!desc)
-		{
+		if (!desc) {
 			continue;
 		}
 
@@ -61,14 +69,11 @@
 		NSString *volKind = (NSString *)CFDictionaryGetValue(desc, kDADiskDescriptionVolumeKindKey);
 		NSURL *mountURL = (NSURL *)CFDictionaryGetValue(desc, kDADiskDescriptionVolumePathKey);
 		
-		for (NSString *kind in allowedKinds)
-		{
-			if (volKind && [kind rangeOfString:volKind options:NSCaseInsensitiveSearch].location != NSNotFound)
-			{
+		for (NSString *kind in allowedKinds) {
+			if (volKind && [kind rangeOfString:volKind options:NSCaseInsensitiveSearch].location != NSNotFound) {
 				isValidBootCampVolume = YES;
 				
-				if ([kind isEqualToString:KIND_NTFS_3G] || [kind isEqualToString:KIND_TUXERA])
-				{
+				if ([kind isEqualToString:KIND_NTFS_3G] || [kind isEqualToString:KIND_TUXERA]) {
 					// When NTFS-3G/MacFUSE is installed we need to use
 					// bless's --device option instead of --folder
 					// for some reason --folder doesn't work in this situation.
@@ -78,9 +83,8 @@
 			}
 		}
 		
-		if (isValidBootCampVolume)
-		{
-            NSString *mountPoint = [mountURL path];
+        NSString *mountPoint = [mountURL path];
+		if (isValidBootCampVolume && [self isBootableVolume:mountPoint]) {
 			media.mountPoint = mountPoint;
             if (mountPoint != nil) {
                 media.name = [mountPoint lastPathComponent];
@@ -100,9 +104,9 @@
 
 - (void)dealloc
 {
-	self.mountPoint = nil;
-	self.deviceName = nil;
-	self.name = nil;
+    [mountPoint_ release];
+    [deviceName_ release];
+    [name_ release];
 	[super dealloc];
 }
 

@@ -11,9 +11,9 @@
 
 @interface BOMedia : NSObject
 {
-	NSString *mountPoint;
-	NSString *deviceName;
-	NSString *name;
+	NSString *mountPoint_;
+	NSString *deviceName_;
+	NSString *name_;
 }
 
 + (NSArray *)allMedia;
