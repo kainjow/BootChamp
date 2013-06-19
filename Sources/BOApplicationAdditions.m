@@ -52,11 +52,11 @@
 	if (!list)
 		return;
 	
-	CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
+	CFStringRef appName = (__bridge CFStringRef)[[NSProcessInfo processInfo] processName];
 	
 	if (![self isAppInstalled:appName inList:list item:NULL])
 	{
-		CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
+		CFURLRef url = (__bridge CFURLRef)[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]];
 		LSSharedFileListItemRef newItem = LSSharedFileListInsertItemURL(list, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
 		if (newItem)
 			CFRelease(newItem);
@@ -71,7 +71,7 @@
 	if (!list)
 		return;
 	
-	CFStringRef appName = (CFStringRef)[[NSProcessInfo processInfo] processName];
+	CFStringRef appName = (__bridge CFStringRef)[[NSProcessInfo processInfo] processName];
 	LSSharedFileListItemRef item = NULL;
 	if ([self isAppInstalled:appName inList:list item:&item] && item)
 	{

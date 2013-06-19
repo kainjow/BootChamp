@@ -10,7 +10,6 @@
 #import <sys/mount.h>
 #import <DiskArbitration/DiskArbitration.h>
 
-
 // http://macntfs-3g.blogspot.com/
 #define KIND_NTFS_3G		@"ntfs-3g"
 // http://www.paragon-software.com/home/ntfs-mac/
@@ -18,16 +17,11 @@
 // http://www.tuxera.com/products/tuxera-ntfs-for-mac/
 #define KIND_TUXERA			@"fusefs_txantfs"
 
-
 @implementation BOMedia
-
-@synthesize mountPoint = mountPoint_;
-@synthesize deviceName = deviceName_;
-@synthesize name = name_;
 
 + (BOOL)isBootableVolume:(NSString*)path
 {
-    NSFileManager *fm = [[[NSFileManager alloc] init] autorelease];
+    NSFileManager *fm = [[NSFileManager alloc] init];
     NSString *sys32Folder = [[path stringByAppendingPathComponent:@"Windows"] stringByAppendingPathComponent:@"System32"];
     if ([fm fileExistsAtPath:sys32Folder]) {
         return YES;
@@ -43,7 +37,7 @@
 		return nil;
 	}
 	
-	NSArray *allowedKinds = [NSArray arrayWithObjects:@"ntfs", @"msdos", @"ufsd", @"cd9660", KIND_NTFS_3G, KIND_PARAGON_NTFS, KIND_TUXERA, nil];
+	NSArray *allowedKinds = @[@"ntfs", @"msdos", @"ufsd", @"cd9660", KIND_NTFS_3G, KIND_PARAGON_NTFS, KIND_TUXERA];
 	
 	NSMutableArray *array = [NSMutableArray array];
 	struct statfs *buf = NULL;
@@ -62,7 +56,7 @@
 			continue;
 		}
 
-		BOMedia *media = [[[BOMedia alloc] init] autorelease];
+		BOMedia *media = [[BOMedia alloc] init];
 		
 		BOOL isValidBootCampVolume = NO;
 		
@@ -100,14 +94,6 @@
 	CFRelease(session);
 	
 	return array;
-}
-
-- (void)dealloc
-{
-    [mountPoint_ release];
-    [deviceName_ release];
-    [name_ release];
-	[super dealloc];
 }
 
 @end

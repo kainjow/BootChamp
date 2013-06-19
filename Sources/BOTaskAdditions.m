@@ -50,7 +50,11 @@
 	}
 	
 	FILE *file = NULL;
+    // AuthorizationExecuteWithPrivileges is deprecated in 10.7, so ignore the warning for now.
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 	status = AuthorizationExecuteWithPrivileges(authorizationRef, cpath, kAuthorizationFlagDefaults, args, output ? &file : NULL);
+#pragma clang diagnostic pop
     if (args != NULL) {
         free(args);
     }
@@ -124,16 +128,12 @@
 	if (outHandle != nil)
 	{
 		if (output)
-			*output = [[[NSString alloc] initWithData:[outHandle readDataToEndOfFile] encoding:NSUTF8StringEncoding] autorelease];
+			*output = [[NSString alloc] initWithData:[outHandle readDataToEndOfFile] encoding:NSUTF8StringEncoding];
 		[outHandle closeFile];
 	}
 	
 	[task waitUntilExit];
 	status = [task terminationStatus];
-	
-	[outPipe release];
-	[inPipe release];
-	[task release];
 	
 	return status;
 }

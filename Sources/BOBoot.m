@@ -51,7 +51,7 @@ static NSString* BOHelperSource()
 {
 	static NSString *src = nil;
 	if (!src) 
-		src = [[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelper"] retain];
+		src = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelper"];
 	return src;
 }
 
@@ -60,9 +60,9 @@ static NSString* BOHelperDestination()
 	static NSString *dest = nil;
 	if (!dest) {
 		NSString *toolSrc = BOHelperSource();
-		NSString *appSupportPath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSLocalDomainMask, YES) lastObject];
+		NSString *appSupportPath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSLocalDomainMask, YES) firstObject];
 		NSString *boAppSupport = [appSupportPath stringByAppendingPathComponent:[[NSProcessInfo processInfo] processName]];
-		dest = [[boAppSupport stringByAppendingPathComponent:[toolSrc lastPathComponent]] retain];
+		dest = [boAppSupport stringByAppendingPathComponent:[toolSrc lastPathComponent]];
 	}
 	return dest;
 }
@@ -137,12 +137,12 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 	NSString *toolDest = BOHelperDestination();
 	if (BOAuthorizationRequired()) {
 		NSString *prompt = [NSString stringWithFormat:NSLocalizedString(@"Administrative access is needed to change your startup disk to \"%@\".", ""), media.name];
-		ret = [NSTask launchTaskAsRootAtPath:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelperInstaller"] arguments:[NSArray arrayWithObjects:BOHelperSource(), toolDest, nil] prompt:prompt output:&output];
+		ret = [NSTask launchTaskAsRootAtPath:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelperInstaller"] arguments:@[BOHelperSource(), toolDest] prompt:prompt output:&output];
 		switch (ret) {
 			case BOTaskLaunched:
 				if (output && [output length] > 0) {
 					if (error)
-						*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInstallationFailed userInfo:[NSDictionary dictionaryWithObject:output forKey:NSLocalizedDescriptionKey]];
+						*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInstallationFailed userInfo:@{NSLocalizedDescriptionKey : output}];
 					return NO;
 				}
 				break;
@@ -152,7 +152,7 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 				return NO;
 			case BOTaskError:
 				if (error)
-					*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootAuthorizationError userInfo:output ? [NSDictionary dictionaryWithObject:output forKey:NSLocalizedDescriptionKey] : nil];
+					*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootAuthorizationError userInfo:output ? @{NSLocalizedDescriptionKey : output} : nil];
 				return NO;
 		}
 	}

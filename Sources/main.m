@@ -11,12 +11,12 @@
 
 int main(int argc, char *argv[])
 {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	[NSApplication sharedApplication];
-	BOStatusMenuController *controller = [[[BOStatusMenuController alloc] init] autorelease];
-	[NSApp setDelegate:controller];
-	[NSApp run];
-	[pool drain];
+    @autoreleasepool {
+        [NSApplication sharedApplication];
+        BOStatusMenuController *controller = [[BOStatusMenuController alloc] init];
+        [NSApp setDelegate:controller];
+        [NSApp run];
+    }
     return 0;
 }
 

@@ -19,9 +19,7 @@
 
 + (void)initialize
 {
-	NSDictionary *defaults = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSNumber numberWithBool:YES], BOPrefsLaunchAtStartup,
-							  nil];
+	NSDictionary *defaults = @{BOPrefsLaunchAtStartup : @YES};
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
@@ -84,7 +82,7 @@
 	
 	[img unlockFocus];
 	[img setTemplate:YES];
-	return [img autorelease];
+	return img;
 }
 
 - (void)checkPrefs
@@ -127,10 +125,10 @@
 		else
 		{
 			// multiple media
-			NSMenu *submenu = [[[NSMenu alloc] init] autorelease];
+			NSMenu *submenu = [[NSMenu alloc] init];
 			for (BOMedia *m in media)
 			{
-				NSMenuItem *item = [[[NSMenuItem alloc] initWithTitle:m.name action:@selector(bootWindows:) keyEquivalent:@""] autorelease];
+				NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:m.name action:@selector(bootWindows:) keyEquivalent:@""];
 				[item setTarget:self];
 				[item setRepresentedObject:m];
 				NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:m.mountPoint];
@@ -171,7 +169,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notif
 {
-	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength] retain];
+	statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
 	[statusItem setHighlightMode:YES];
     
     // Allow the user to specify a custom image via:
@@ -179,14 +177,14 @@
     NSString *statusImagePath = [[NSUserDefaults standardUserDefaults] objectForKey:@"StatusImage"];
     NSImage *statusImage = nil;
     if (statusImagePath != nil) {
-        statusImage = [[[NSImage alloc] initWithContentsOfFile:statusImagePath] autorelease];
+        statusImage = [[NSImage alloc] initWithContentsOfFile:statusImagePath];
     }
     if (statusImage == nil) {
         statusImage = [self statusImage];
     }
 	[statusItem setImage:statusImage];
 	
-	NSMenu *menu = [[[NSMenu alloc] init] autorelease];
+	NSMenu *menu = [[NSMenu alloc] init];
 	[menu setDelegate:self];
 	
 	// restart into windows
@@ -201,7 +199,7 @@
 	[menu addItem:[NSMenuItem separatorItem]];
 	
 	NSMenuItem *prefsMenuItem = [menu addItemWithTitle:NSLocalizedString(@"Preferences", "preferences title menu item") action:nil keyEquivalent:@""];
-    NSMenu *prefsSubMenu = [[[NSMenu alloc] init] autorelease];
+    NSMenu *prefsSubMenu = [[NSMenu alloc] init];
     [prefsMenuItem setSubmenu:prefsSubMenu];
 	NSMenuItem *menuItem;
 	menuItem = [prefsSubMenu addItemWithTitle:NSLocalizedString(@"Launch at startup", "launch at startup menu item") action:@selector(preferenceAction:) keyEquivalent:@""];
@@ -254,7 +252,7 @@
 			break;
 	}
 	if (msg) {
-		NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+		NSAlert *alert = [[NSAlert alloc] init];
 		[alert setMessageText:msg];
 		if (info)
 			[alert setInformativeText:info];
@@ -266,7 +264,7 @@
 {
 	[NSApp activateIgnoringOtherApps:YES];
 	NSURL *helpURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"help.htm" ofType:nil]];
-	[[NSWorkspace sharedWorkspace] openURLs:[NSArray arrayWithObject:helpURL] withAppBundleIdentifier:@"com.apple.helpviewer" options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:nil launchIdentifiers:NULL];
+	[[NSWorkspace sharedWorkspace] openURLs:@[helpURL] withAppBundleIdentifier:@"com.apple.helpviewer" options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:nil launchIdentifiers:NULL];
 }
 
 - (void)preferenceAction:(id)sender

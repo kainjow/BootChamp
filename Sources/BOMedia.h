@@ -10,16 +10,11 @@
 
 
 @interface BOMedia : NSObject
-{
-	NSString *mountPoint_;
-	NSString *deviceName_;
-	NSString *name_;
-}
 
 + (NSArray *)allMedia;
 
-@property (readwrite, retain) NSString *mountPoint;
-@property (readwrite, retain) NSString *deviceName;
-@property (readwrite, retain) NSString *name;
+@property (strong) NSString *mountPoint;
+@property (strong) NSString *deviceName;
+@property (strong) NSString *name;
 
 @end
