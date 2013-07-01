@@ -11,7 +11,7 @@
 #import "BOMedia.h"
 #import "BOHelperInstaller.h"
 #import "NSApplication+LoginItems.h"
-
+#import <Sparkle/Sparkle.h>
 
 #define BOPrefsLaunchAtStartup	@"LaunchAtStartup"
 
@@ -209,6 +209,7 @@
 		[menuItem setState:NSOnState];
 
 	[menu addItemWithTitle:NSLocalizedString(@"BootChamp Help", "help menu item") action:@selector(showHelp:) keyEquivalent:@""];
+	[menu addItemWithTitle:NSLocalizedString(@"Check for Updates\u2026", "check for updates menu item") action:@selector(checkforUpdates:) keyEquivalent:@""];
 	[menu addItem:[NSMenuItem separatorItem]];
 	[menu addItemWithTitle:NSLocalizedString(@"Quit", "quit menu item") action:@selector(quit:) keyEquivalent:@""];
 	[[menu itemArray] makeObjectsPerformSelector:@selector(setTarget:) withObject:self];
@@ -274,6 +275,11 @@
 	[[NSUserDefaults standardUserDefaults] setBool:(newState == NSOnState ? YES : NO) forKey:key];
 	
 	[self checkPrefs];
+}
+
+- (void)checkforUpdates:(id)sender
+{
+    [[SUUpdater sharedUpdater] checkForUpdates:sender];
 }
 
 - (void)quit:(id __unused)sender
