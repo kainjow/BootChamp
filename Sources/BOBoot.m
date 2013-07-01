@@ -179,7 +179,7 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 			break;
 		case BOTaskError:
 			if (error)
-				*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:output ? [NSDictionary dictionaryWithObject:output forKey:NSLocalizedDescriptionKey] : nil];
+				*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:output ? @{NSLocalizedDescriptionKey : output} : nil];
 			return NO;
 	}
 	
@@ -192,7 +192,7 @@ BOOL BOBoot(BOMedia *media, NSError **error)
     BOOL ignoreOutput = (output != nil && [output hasPrefix:@"dyld: DYLD_"] && [output hasSuffix:@"is setuid or setgid"]);
 	if (output && [output length] > 0 && !ignoreOutput) {
 		if (error)
-			*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:[NSDictionary dictionaryWithObject:output forKey:NSLocalizedDescriptionKey]];
+			*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:@{NSLocalizedDescriptionKey : output}];
 		return NO;
 	}
 	
