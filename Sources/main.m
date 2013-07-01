@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BOStatusMenuController.h"
 
-int main(int argc, char *argv[])
+int main(void)
 {
     @autoreleasepool {
         [NSApplication sharedApplication];

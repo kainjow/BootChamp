@@ -45,7 +45,7 @@
 	char **args = NULL;
 	if (arguments && [arguments count] > 0) {
 		args = calloc([arguments count] + 1, sizeof(char*));
-		for (NSInteger i=0; i<[arguments count]; i++)
+		for (NSUInteger i=0; i<[arguments count]; i++)
 			args[i] = (char *)[[arguments objectAtIndex:i] UTF8String];
 	}
 	

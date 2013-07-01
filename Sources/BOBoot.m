@@ -21,37 +21,41 @@ static BOOL BORestart()
 {
 #if 1
     AEAddressDesc targetDesc;
-    static const ProcessSerialNumber kPSNOfSystemProcess = { 0, kSystemProcess };
+    static const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess};
     AppleEvent eventReply = {typeNull, NULL};
     AppleEvent appleEventToSend = {typeNull, NULL};
     OSStatus error = noErr;
 	
     error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess, sizeof(kPSNOfSystemProcess), &targetDesc);
-    if (error != noErr)
+    if (error != noErr) {
         return NO;
+    }
 	
     error = AECreateAppleEvent(kCoreEventClass, kAERestart, &targetDesc, kAutoGenerateReturnID, kAnyTransactionID, &appleEventToSend);
     AEDisposeDesc(&targetDesc);
-    if (error != noErr)
+    if (error != noErr) {
         return NO;
+    }
 	
     error = AESend(&appleEventToSend, &eventReply, kAENoReply, kAENormalPriority, kAEDefaultTimeout, NULL, NULL);
     AEDisposeDesc(&appleEventToSend);
-    if (error != noErr)
+    if (error != noErr) {
         return NO;
+    }
 	
     AEDisposeDesc(&eventReply);
 	return (error == noErr ? YES : NO);
 #else
-	return NO;
+	return NO; // for testing
 #endif
 }
 
 static NSString* BOHelperSource()
 {
 	static NSString *src = nil;
-	if (!src) 
+	if (!src) {
 		src = [[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelper"];
+    }
 	return src;
 }
 
@@ -67,61 +71,57 @@ static NSString* BOHelperDestination()
 	return dest;
 }
 
-static char* BOCreateMD5(const char *path)
+static NSString* BOCreateMD5(const char *path)
 {
-	if (!path)
-		return NULL;
+	if (!path) {
+		return nil;
+    }
 	int f = open(path, O_RDONLY);
-	if (f == -1)
-		return NULL;
-	unsigned char *data = calloc(1, CC_MD5_DIGEST_LENGTH * sizeof(unsigned char));
-	if (!data)
-		return NULL;
-	char bytes[512];
-	int bytes_read = 0;
+	if (f == -1) {
+		return nil;
+    }
+	unsigned char data[CC_MD5_DIGEST_LENGTH];
+	char bytes[2048];
+	ssize_t bytes_read;
 	CC_MD5_CTX c;
 	CC_MD5_Init(&c);
-	while ((bytes_read = read(f, bytes, sizeof(bytes))) > 0)
-		CC_MD5_Update(&c, bytes, bytes_read);
-	close(f);
+	while ((bytes_read = read(f, bytes, sizeof(bytes))) > 0) {
+		CC_MD5_Update(&c, bytes, (CC_LONG)bytes_read);
+    }
+	(void)close(f);
 	CC_MD5_Final(data, &c);
-	char *str = calloc(1, CC_MD5_DIGEST_LENGTH*2 + 1);
-	for (int i=0; i<CC_MD5_DIGEST_LENGTH; i++)
-		sprintf(str+(i*2), "%02X", data[i]);
-	free(data);
-	return str;
-}	
+    return [NSString stringWithFormat:@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+				   data[0], data[1], data[2], data[3],
+				   data[4], data[5], data[6], data[7],
+				   data[8], data[9], data[10],data[11],
+				   data[12], data[13], data[14], data[15]];
+}
 
-BOOL BOAuthorizationRequired()
+BOOL BOAuthorizationRequired(void)
 {
 	const char *dest = [BOHelperDestination() fileSystemRepresentation];
 	const char *src = [BOHelperSource() fileSystemRepresentation];
 	struct stat dest_buf, src_buf;
 	// verify dest exists
-	if (stat(dest, &dest_buf) != 0)
+	if (stat(dest, &dest_buf) != 0) {
 		return YES;
+    }
 	// verify dest's permissions
-	if ((dest_buf.st_mode & TOOL_MODE) == 0)
+	if ((dest_buf.st_mode & TOOL_MODE) == 0) {
 		return YES;
+    }
 	// verify dest's owner
-	if (dest_buf.st_uid != 0)
+	if (dest_buf.st_uid != 0) {
 		return YES;
+    }
 	// verify dest and src has same size
-	if (stat(src, &src_buf) != 0 || src_buf.st_size != dest_buf.st_size)
+	if (stat(src, &src_buf) != 0 || src_buf.st_size != dest_buf.st_size) {
 		return YES;
+    }
 	// verify dest and src are equal
-	int md5s_equal = 0;
-	char *md5_src = BOCreateMD5(src);
-	char *md5_dest = BOCreateMD5(dest);
-	if (md5_src && md5_dest)
-		md5s_equal = strcmp(md5_src, md5_dest) == 0;
-	if (md5_src)
-		free(md5_src);
-	if (md5_dest)
-		free(md5_dest);
-	if (!md5s_equal)
-		return YES;
-	return NO;
+	NSString *md5_src = BOCreateMD5(src);
+	NSString *md5_dest = BOCreateMD5(dest);
+    return md5_src != nil && md5_dest != nil && [md5_src isEqualToString:md5_dest];
 }
 
 BOOL BOBoot(BOMedia *media, NSError **error)

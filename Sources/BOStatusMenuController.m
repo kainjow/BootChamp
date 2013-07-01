@@ -162,12 +162,12 @@
 	});
 }
 
-- (void)menuNeedsUpdate:(NSMenu *)menu
+- (void)menuNeedsUpdate:(NSMenu * __unused)menu
 {
 	[self updateBootMenuTitle];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)notif
+- (void)applicationDidFinishLaunching:(NSNotification * __unused)notif
 {
 	statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
 	[statusItem setHighlightMode:YES];
@@ -260,14 +260,14 @@
 	}
 }
 
-- (void)showHelp:(id)sender
+- (void)showHelp:(id __unused)sender
 {
 	[NSApp activateIgnoringOtherApps:YES];
 	NSURL *helpURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"help.htm" ofType:nil]];
 	[[NSWorkspace sharedWorkspace] openURLs:@[helpURL] withAppBundleIdentifier:@"com.apple.helpviewer" options:NSWorkspaceLaunchDefault additionalEventParamDescriptor:nil launchIdentifiers:NULL];
 }
 
-- (void)preferenceAction:(id)sender
+- (void)preferenceAction:(id __unused)sender
 {
 	NSString *key = [sender representedObject];
 	NSInteger newState = ([sender state] == NSOnState ? NSOffState : NSOnState);
@@ -277,7 +277,7 @@
 	[self checkPrefs];
 }
 
-- (void)quit:(id)sender
+- (void)quit:(id __unused)sender
 {
 	[NSApp terminate:nil];
 }
