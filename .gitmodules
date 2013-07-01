@@ -1,0 +1,3 @@
+[submodule "libs/NSAppLoginItems"]
+	path = libs/NSAppLoginItems
+	url = https://github.com/kainjow/NSAppLoginItems.git

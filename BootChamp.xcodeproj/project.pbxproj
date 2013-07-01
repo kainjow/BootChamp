@@ -21,9 +21,9 @@
 		A5E5801C145A4ADA00F07C69 /* BOBoot.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E5801A145A4ADA00F07C69 /* BOBoot.m */; };
 		A5E58022145A4AE300F07C69 /* BOMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58020145A4AE300F07C69 /* BOMedia.m */; };
 		A5E58028145A4AF100F07C69 /* BOTaskAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58024145A4AF100F07C69 /* BOTaskAdditions.m */; };
-		A5E58029145A4AF100F07C69 /* BOApplicationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58027145A4AF100F07C69 /* BOApplicationAdditions.m */; };
 		A5E58038145A4B7900F07C69 /* BOHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = A5E58010145A4AB000F07C69 /* BOHelper.c */; };
 		A5E58039145A4B7C00F07C69 /* BOHelperInstaller.c in Sources */ = {isa = PBXBuildFile; fileRef = A5E5800F145A4AB000F07C69 /* BOHelperInstaller.c */; };
+		A5E9124A1780F77D00B8D44C /* NSApplication+LoginItems.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E912491780F77D00B8D44C /* NSApplication+LoginItems.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,8 +89,8 @@
 		A5E58021145A4AE300F07C69 /* BOMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOMedia.h; path = Sources/BOMedia.h; sourceTree = "<group>"; };
 		A5E58024145A4AF100F07C69 /* BOTaskAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOTaskAdditions.m; path = Sources/BOTaskAdditions.m; sourceTree = "<group>"; };
 		A5E58025145A4AF100F07C69 /* BOTaskAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOTaskAdditions.h; path = Sources/BOTaskAdditions.h; sourceTree = "<group>"; };
-		A5E58026145A4AF100F07C69 /* BOApplicationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOApplicationAdditions.h; path = Sources/BOApplicationAdditions.h; sourceTree = "<group>"; };
-		A5E58027145A4AF100F07C69 /* BOApplicationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOApplicationAdditions.m; path = Sources/BOApplicationAdditions.m; sourceTree = "<group>"; };
+		A5E912481780F77D00B8D44C /* NSApplication+LoginItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSApplication+LoginItems.h"; path = "libs/NSAppLoginItems/NSApplication+LoginItems.h"; sourceTree = "<group>"; };
+		A5E912491780F77D00B8D44C /* NSApplication+LoginItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSApplication+LoginItems.m"; path = "libs/NSAppLoginItems/NSApplication+LoginItems.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +121,6 @@
 				A5E58020145A4AE300F07C69 /* BOMedia.m */,
 				A5E58025145A4AF100F07C69 /* BOTaskAdditions.h */,
 				A5E58024145A4AF100F07C69 /* BOTaskAdditions.m */,
-				A5E58026145A4AF100F07C69 /* BOApplicationAdditions.h */,
-				A5E58027145A4AF100F07C69 /* BOApplicationAdditions.m */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = BootChamp;
@@ -144,6 +142,7 @@
 				A50FF09814B6B57800EA561F /* BOHelper */,
 				A50FF09C14B6B5CD00EA561F /* BOHelperInstaller */,
 				080E96DDFE201D6D7F000001 /* BootChamp */,
+				A5E912471780F76F00B8D44C /* libs */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -187,6 +186,15 @@
 				A5E5800F145A4AB000F07C69 /* BOHelperInstaller.c */,
 			);
 			name = BOHelperInstaller;
+			sourceTree = "<group>";
+		};
+		A5E912471780F76F00B8D44C /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				A5E912481780F77D00B8D44C /* NSApplication+LoginItems.h */,
+				A5E912491780F77D00B8D44C /* NSApplication+LoginItems.m */,
+			);
+			name = libs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,10 +323,10 @@
 			files = (
 				A5E58014145A4AC000F07C69 /* main.m in Sources */,
 				A5E58019145A4ACD00F07C69 /* BOStatusMenuController.m in Sources */,
+				A5E9124A1780F77D00B8D44C /* NSApplication+LoginItems.m in Sources */,
 				A5E5801C145A4ADA00F07C69 /* BOBoot.m in Sources */,
 				A5E58022145A4AE300F07C69 /* BOMedia.m in Sources */,
 				A5E58028145A4AF100F07C69 /* BOTaskAdditions.m in Sources */,
-				A5E58029145A4AF100F07C69 /* BOApplicationAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

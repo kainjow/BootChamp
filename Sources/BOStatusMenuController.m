@@ -8,9 +8,9 @@
 
 #import "BOStatusMenuController.h"
 #import "BOBoot.h"
-#import "BOApplicationAdditions.h"
 #import "BOMedia.h"
 #import "BOHelperInstaller.h"
+#import "NSApplication+LoginItems.h"
 
 
 #define BOPrefsLaunchAtStartup	@"LaunchAtStartup"
