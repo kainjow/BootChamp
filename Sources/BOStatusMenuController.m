@@ -23,7 +23,7 @@
 	[[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
 }
 
-- (NSImage *)statusImage
++ (NSImage *)statusImage
 {
 	NSImage *img = [[NSImage alloc] initWithSize:NSMakeSize(22.0, 22.0)];
 	NSRect bounds = NSMakeRect(0.0, 0.0, [img size].width, [img size].height);
@@ -180,7 +180,7 @@
         statusImage = [[NSImage alloc] initWithContentsOfFile:statusImagePath];
     }
     if (statusImage == nil) {
-        statusImage = [self statusImage];
+        statusImage = [[self class] statusImage];
     }
 	[statusItem setImage:statusImage];
 	
