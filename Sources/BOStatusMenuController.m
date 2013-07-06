@@ -96,38 +96,39 @@
 - (void)updateBootMenuTitle
 {
 	NSString *restartTitle = NSLocalizedString(@"Restart into Windows", "restart into windows menu item");
+	NSString *altRestartTitle;
+    if ([bootMenuItem representedObject]) {
+        altRestartTitle = [NSString stringWithFormat:NSLocalizedString(@"Restart into %@", "restart into windows alternative menu item"), [[bootMenuItem representedObject] name]];
+    } else {
+        altRestartTitle = restartTitle;
+    }
 	if (BOAuthorizationRequired() && ([bootMenuItem target] || [bootMenuItem submenu])) {
+        // Add ellipsis character to indicate the user needs to authenticate
 		restartTitle = [restartTitle stringByAppendingString:@"\u2026"];
+		altRestartTitle = [altRestartTitle stringByAppendingString:@"\u2026"];
 	}
 	[bootMenuItem setTitle:restartTitle];
+    [altBootMenuItem setTitle:altRestartTitle];
 }
 
-- (void)updateBootMenuWithMedia:(NSArray *)media
+- (void)updateBootMenu:(NSMenuItem*)menuItem withMedia:(NSArray*)media
 {
-	[self updateBootMenuTitle];
-	if (![media count])
-	{
+	if (![media count]) {
 		// no media
-		[bootMenuItem setTarget:nil];
-		[bootMenuItem setAction:NULL];
-		[bootMenuItem setSubmenu:nil];
-		[bootMenuItem setRepresentedObject:nil];
-	}
-	else
-	{
-		if ([media count] == 1)
-		{
-			[bootMenuItem setTarget:self];
-			[bootMenuItem setAction:@selector(bootWindows:)];
-			[bootMenuItem setSubmenu:nil];
-			[bootMenuItem setRepresentedObject:[media lastObject]];
-		}
-		else
-		{
+		[menuItem setTarget:nil];
+		[menuItem setAction:nil];
+		[menuItem setSubmenu:nil];
+		[menuItem setRepresentedObject:nil];
+	} else {
+		if ([media count] == 1) {
+			[menuItem setTarget:self];
+			[menuItem setAction:@selector(bootWindows:)];
+			[menuItem setSubmenu:nil];
+			[menuItem setRepresentedObject:[media lastObject]];
+		} else {
 			// multiple media
 			NSMenu *submenu = [[NSMenu alloc] init];
-			for (BOMedia *m in media)
-			{
+			for (BOMedia *m in media) {
 				NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:m.name action:@selector(bootWindows:) keyEquivalent:@""];
 				[item setTarget:self];
 				[item setRepresentedObject:m];
@@ -136,12 +137,19 @@
 				[item setImage:icon];
 				[submenu addItem:item];
 			}
-			[bootMenuItem setTarget:nil];
-			[bootMenuItem setAction:NULL];
-			[bootMenuItem setSubmenu:submenu];
-			[bootMenuItem setRepresentedObject:nil];
+			[menuItem setTarget:nil];
+			[menuItem setAction:nil];
+			[menuItem setSubmenu:submenu];
+			[menuItem setRepresentedObject:nil];
 		}
 	}
+}
+
+- (void)updateBootMenuWithMedia:(NSArray *)media
+{
+	[self updateBootMenuTitle];
+    [self updateBootMenu:bootMenuItem withMedia:media];
+    [self updateBootMenu:altBootMenuItem withMedia:media];
 }
 
 - (void)updateBootMenu
@@ -152,7 +160,7 @@
 	[bootMenuItem setSubmenu:nil];
 	[bootMenuItem setRepresentedObject:nil];
 	
-	// (10.6+) load media objects in the background and call back to self with updateBootMenuWithMedia: when done
+	// Load media objects in the background and call back to self with updateBootMenuWithMedia: when done
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 	dispatch_async(queue, ^{
 		NSArray *media = [BOMedia allMedia];
@@ -188,10 +196,13 @@
 	[menu setDelegate:self];
 	
 	// restart into windows
-	bootMenuItem = [[NSMenuItem alloc] initWithTitle:@""
-										   action:nil
-									keyEquivalent:@""];
+	bootMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
+    altBootMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:Nil keyEquivalent:@""];
+    [altBootMenuItem setAlternate:YES];
+    [altBootMenuItem setKeyEquivalentModifierMask:NSAlternateKeyMask];
+    
 	[menu addItem:bootMenuItem];
+    [menu addItem:altBootMenuItem];
 	[self updateBootMenu];
 	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(updateBootMenu) name:NSWorkspaceDidMountNotification object:nil];
 	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(updateBootMenu) name:NSWorkspaceDidUnmountNotification object:nil];

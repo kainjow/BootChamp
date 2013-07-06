@@ -12,6 +12,7 @@
 {
 	NSStatusItem *statusItem;
 	NSMenuItem *bootMenuItem;
+    NSMenuItem *altBootMenuItem;
 }
 
 @end
