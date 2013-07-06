@@ -78,7 +78,7 @@
 		A50FF09A14B6B5C300EA561F /* English */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = English; path = Resources/English.lproj/help.htm; sourceTree = "<group>"; };
 		A51E571311D6700700E862B8 /* BOHelperInstaller */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelperInstaller; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51E602B11D6DFEE00E862B8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		A52D6EBE16687B5F00B7E885 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A52D6EBE16687B5F00B7E885 /* hr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A58D8D6D0E6483160073F663 /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = /System/Library/Frameworks/DiskArbitration.framework; sourceTree = "<absolute>"; };
 		A58EA2C10E7191DE008837F3 /* appicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appicon.icns; path = Resources/appicon.icns; sourceTree = "<group>"; };
 		A58EA42E0E719AA0008837F3 /* BOHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelper; sourceTree = BUILT_PRODUCTS_DIR; };
