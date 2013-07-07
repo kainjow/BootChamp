@@ -17,14 +17,62 @@
 // http://www.tuxera.com/products/tuxera-ntfs-for-mac/
 #define KIND_TUXERA			@"fusefs_txantfs"
 
+@interface NSFileManager (BOMedia)
+- (BOOL)fileExistsAtPathIgnoringCase:(NSString*)path isDirectory:(BOOL*)isDir;
+@end
+@implementation NSFileManager (BOMedia)
+- (BOOL)fileExistsAtPathIgnoringCase:(NSString*)path isDirectory:(BOOL*)isDir
+{
+    NSArray *components = [path pathComponents];
+    NSString *truePath = [components objectAtIndex:0];
+    for (NSUInteger i = 1; i < [components count]; ++i) {
+        NSString *givenComponent = [components objectAtIndex:i];
+        BOOL isLastComponent = (i == [components count] - 1);
+        for (NSString *trueComponent in [self contentsOfDirectoryAtPath:truePath error:nil]) {
+            if ([trueComponent caseInsensitiveCompare:givenComponent] == NSOrderedSame) {
+                truePath = [truePath stringByAppendingPathComponent:trueComponent];
+                if (isLastComponent) {
+                    return [self fileExistsAtPath:truePath isDirectory:isDir];
+                }
+                break;
+            }
+        }
+    }
+    return NO;
+}
+@end
+
+@interface NSString (BOMedia)
+- (NSString*)stringByAppendingPathComponents:(NSArray*)components;
+@end
+@implementation NSString (BOMedia)
+- (NSString*)stringByAppendingPathComponents:(NSArray*)components
+{
+    NSString *s = self;
+    for (NSString *comp in components) {
+        s = [s stringByAppendingPathComponent:comp];
+    }
+    return s;
+}
+@end
+
 @implementation BOMedia
 
-+ (BOOL)isBootableVolume:(NSString*)path
++ (BOOL)isBootableVolume:(NSString*)volume
 {
     NSFileManager *fm = [[NSFileManager alloc] init];
-    NSString *sys32Folder = [[path stringByAppendingPathComponent:@"Windows"] stringByAppendingPathComponent:@"System32"];
-    if ([fm fileExistsAtPath:sys32Folder]) {
-        return YES;
+    NSArray *paths = @[
+        [volume stringByAppendingPathComponents:@[@"Windows", @"System32"]],
+    ];
+    for (NSString *path in paths) {
+        BOOL isDir = NO;
+        // NTFS is case sensitive.
+        // On 10.8, fileExistsAtPath: seems to work just fine with case insensitive paths,
+        // but according to a customer with 10.6 it does not work for him, so I had to implement
+        // a case insensitive alternative.
+        if ([fm fileExistsAtPathIgnoringCase:path isDirectory:&isDir] && isDir == YES) {
+            return YES;
+        }
     }
     return NO;
 }
