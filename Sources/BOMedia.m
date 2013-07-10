@@ -68,7 +68,7 @@
         BOOL isDir = NO;
         // NTFS is case sensitive.
         // On 10.8, fileExistsAtPath: seems to work just fine with case insensitive paths,
-        // but according to a customer with 10.6 it does not work for him, so I had to implement
+        // but according to a user with 10.6 it does not work, so I had to implement
         // a case insensitive alternative.
         if ([fm fileExistsAtPathIgnoringCase:path isDirectory:&isDir] && isDir == YES) {
             return YES;
