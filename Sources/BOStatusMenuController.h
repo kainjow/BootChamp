@@ -8,11 +8,14 @@
 
 #import <AppKit/AppKit.h>
 
+@class SUUpdater;
+
 @interface BOStatusMenuController : NSObject <NSMenuDelegate>
 {
 	NSStatusItem *statusItem;
 	NSMenuItem *bootMenuItem;
     NSMenuItem *altBootMenuItem;
+    SUUpdater *updater;
 }
 
 @end

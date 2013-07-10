@@ -228,6 +228,8 @@
 	[statusItem setMenu:menu];
 	
 	[self checkPrefs];
+    
+    updater = [SUUpdater sharedUpdater];
 }
 
 - (void)bootWindows:(id)sender
@@ -290,7 +292,7 @@
 
 - (void)checkforUpdates:(id)sender
 {
-    [[SUUpdater sharedUpdater] checkForUpdates:sender];
+    [updater checkForUpdates:sender];
 }
 
 - (void)quit:(id __unused)sender
