@@ -119,9 +119,16 @@ BOOL BOAuthorizationRequired(void)
 		return YES;
     }
 	// verify dest and src are equal
+    BOOL md5s_equal = NO;
 	NSString *md5_src = BOCreateMD5(src);
 	NSString *md5_dest = BOCreateMD5(dest);
-    return md5_src != nil && md5_dest != nil && [md5_src isEqualToString:md5_dest];
+    if (md5_src && md5_dest) {
+        md5s_equal = [md5_src isEqualToString:md5_dest];
+    }
+    if (!md5s_equal) {
+        return YES;
+    }
+    return NO;
 }
 
 BOOL BOBoot(BOMedia *media, NSError **error)
