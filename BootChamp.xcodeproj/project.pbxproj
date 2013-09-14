@@ -96,7 +96,6 @@
 		A5E5800F145A4AB000F07C69 /* BOHelperInstaller.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BOHelperInstaller.c; path = Sources/BOHelperInstaller.c; sourceTree = "<group>"; };
 		A5E58010145A4AB000F07C69 /* BOHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BOHelper.c; path = Sources/BOHelper.c; sourceTree = "<group>"; };
 		A5E58012145A4AC000F07C69 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Sources/main.m; sourceTree = "<group>"; };
-		A5E58013145A4AC000F07C69 /* BootChamp_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BootChamp_Prefix.pch; path = Sources/BootChamp_Prefix.pch; sourceTree = "<group>"; };
 		A5E58017145A4ACD00F07C69 /* BOStatusMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOStatusMenuController.m; path = Sources/BOStatusMenuController.m; sourceTree = "<group>"; };
 		A5E58018145A4ACD00F07C69 /* BOStatusMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOStatusMenuController.h; path = Sources/BOStatusMenuController.h; sourceTree = "<group>"; };
 		A5E5801A145A4ADA00F07C69 /* BOBoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOBoot.m; path = Sources/BOBoot.m; sourceTree = "<group>"; };
@@ -128,7 +127,6 @@
 		080E96DDFE201D6D7F000001 /* BootChamp */ = {
 			isa = PBXGroup;
 			children = (
-				A5E58013145A4AC000F07C69 /* BootChamp_Prefix.pch */,
 				A5E58012145A4AC000F07C69 /* main.m */,
 				A5E58018145A4ACD00F07C69 /* BOStatusMenuController.h */,
 				A5E58017145A4ACD00F07C69 /* BOStatusMenuController.m */,
@@ -463,8 +461,6 @@
 					"$(inherited)",
 					"$(SRCROOT)/libs",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Sources/BootChamp_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = BOAPP;
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_NAME = BootChamp;
@@ -480,8 +476,6 @@
 					"$(inherited)",
 					"$(SRCROOT)/libs",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Sources/BootChamp_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = BOAPP;
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_NAME = BootChamp;
