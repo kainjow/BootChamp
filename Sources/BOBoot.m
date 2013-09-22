@@ -64,7 +64,7 @@ static NSString* BOHelperDestination()
 	static NSString *dest = nil;
 	if (!dest) {
 		NSString *toolSrc = BOHelperSource();
-		NSString *appSupportPath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSLocalDomainMask, YES) firstObject];
+		NSString *appSupportPath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSLocalDomainMask, YES) objectAtIndex:0];
 		NSString *boAppSupport = [appSupportPath stringByAppendingPathComponent:[[NSProcessInfo processInfo] processName]];
 		dest = [boAppSupport stringByAppendingPathComponent:[toolSrc lastPathComponent]];
 	}
