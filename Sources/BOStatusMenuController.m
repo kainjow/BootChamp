@@ -12,6 +12,7 @@
 #import "BOHelperInstaller.h"
 #import "NSApplication+LoginItems.h"
 #import <Sparkle/Sparkle.h>
+#import "BOLog.h"
 
 #define BOPrefsLaunchAtStartup	@"LaunchAtStartup"
 
@@ -173,6 +174,14 @@
 - (void)menuNeedsUpdate:(NSMenu * __unused)menu
 {
 	[self updateBootMenuTitle];
+}
+
+- (id)init
+{
+    if ((self = [super init]) != nil) {
+        (void)[BOLog sharedLog]; // init log;
+    }
+    return self;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification * __unused)notif

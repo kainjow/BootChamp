@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A50FF09B14B6B5C300EA561F /* help.htm in Resources */ = {isa = PBXBuildFile; fileRef = A50FF09914B6B5C300EA561F /* help.htm */; };
+		A51765CE17EDFFDE0015B6FC /* BOLog.m in Sources */ = {isa = PBXBuildFile; fileRef = A51765CD17EDFFDE0015B6FC /* BOLog.m */; };
 		A51E570211D6682500E862B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AA6733106869C800E1F762 /* Carbon.framework */; };
 		A51E570811D6682A00E862B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A1083F0C3C8DBC006A3862 /* Security.framework */; };
 		A51E599211D691F500E862B8 /* BOHelperInstaller in Copy Executables */ = {isa = PBXBuildFile; fileRef = A51E571311D6700700E862B8 /* BOHelperInstaller */; };
@@ -76,6 +77,8 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* BootChamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BootChamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50FF09A14B6B5C300EA561F /* English */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = English; path = Resources/English.lproj/help.htm; sourceTree = "<group>"; };
+		A51765CC17EDFFDE0015B6FC /* BOLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOLog.h; path = Sources/BOLog.h; sourceTree = "<group>"; };
+		A51765CD17EDFFDE0015B6FC /* BOLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOLog.m; path = Sources/BOLog.m; sourceTree = "<group>"; };
 		A51E571311D6700700E862B8 /* BOHelperInstaller */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelperInstaller; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51E602B11D6DFEE00E862B8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		A52D6EBE16687B5F00B7E885 /* hr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				A5E58020145A4AE300F07C69 /* BOMedia.m */,
 				A5E58025145A4AF100F07C69 /* BOTaskAdditions.h */,
 				A5E58024145A4AF100F07C69 /* BOTaskAdditions.m */,
+				A51765CC17EDFFDE0015B6FC /* BOLog.h */,
+				A51765CD17EDFFDE0015B6FC /* BOLog.m */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = BootChamp;
@@ -351,6 +356,7 @@
 			files = (
 				A5E58014145A4AC000F07C69 /* main.m in Sources */,
 				A5E58019145A4ACD00F07C69 /* BOStatusMenuController.m in Sources */,
+				A51765CE17EDFFDE0015B6FC /* BOLog.m in Sources */,
 				A5E9124A1780F77D00B8D44C /* NSApplication+LoginItems.m in Sources */,
 				A5E5801C145A4ADA00F07C69 /* BOBoot.m in Sources */,
 				A5E58022145A4AE300F07C69 /* BOMedia.m in Sources */,

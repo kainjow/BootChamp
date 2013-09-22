@@ -13,7 +13,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import <sys/stat.h>
 #import <Carbon/Carbon.h>
-
+#import "BOLog.h"
 
 static NSString *const BOBootErrorDomain = @"BOBootErrorDomain";
 
@@ -102,20 +102,26 @@ BOOL BOAuthorizationRequired(void)
 	const char *dest = [BOHelperDestination() fileSystemRepresentation];
 	const char *src = [BOHelperSource() fileSystemRepresentation];
 	struct stat dest_buf, src_buf;
+    bzero(&dest_buf, sizeof(dest_buf));
+    bzero(&src_buf, sizeof(src_buf));
 	// verify dest exists
 	if (stat(dest, &dest_buf) != 0) {
+        BOLog(@"%s: Dest doesn't exist: %d", __FUNCTION__, errno);
 		return YES;
     }
 	// verify dest's permissions
 	if ((dest_buf.st_mode & TOOL_MODE) == 0) {
+        BOLog(@"%s: Permissions mismatch: %04x", __FUNCTION__, dest_buf.st_mode);
 		return YES;
     }
 	// verify dest's owner
 	if (dest_buf.st_uid != 0) {
+        BOLog(@"%s: Owner mismatch: %d", __FUNCTION__, dest_buf.st_uid);
 		return YES;
     }
 	// verify dest and src has same size
 	if (stat(src, &src_buf) != 0 || src_buf.st_size != dest_buf.st_size) {
+        BOLog(@"%s: Src sizes mismatch (src=%u, dest=%u)", __FUNCTION__, src_buf.st_size, dest_buf.st_size);
 		return YES;
     }
 	// verify dest and src are equal
@@ -126,8 +132,10 @@ BOOL BOAuthorizationRequired(void)
         md5s_equal = [md5_src isEqualToString:md5_dest];
     }
     if (!md5s_equal) {
+        BOLog(@"%s: Hash mismatch", __FUNCTION__);
         return YES;
     }
+    BOLog(@"%s: No auth required", __FUNCTION__);
     return NO;
 }
 
