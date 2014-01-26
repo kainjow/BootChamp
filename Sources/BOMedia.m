@@ -3,7 +3,7 @@
 //  BootChamp
 //
 //  Created by Kevin Wojniak on 9/9/08.
-//  Copyright 2008-2010 Kevin Wojniak. All rights reserved.
+//  Copyright 2008-2014 Kevin Wojniak. All rights reserved.
 //
 
 #import "BOMedia.h"
@@ -61,6 +61,9 @@
 + (BOOL)isBootableVolume:(NSString*)volume
 {
     NSFileManager *fm = [[NSFileManager alloc] init];
+    if (!volume || ![fm fileExistsAtPath:volume]) {
+        return NO;
+    }
     NSArray *paths = @[
         [volume stringByAppendingPathComponents:@[@"Windows", @"System32"]],
     ];
