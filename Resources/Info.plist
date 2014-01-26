@@ -17,15 +17,15 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.5.2</string>
+	<string>1.5.3</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5.2</string>
+	<string>1.5.3</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6.8</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© Kevin Wojniak, 2007-2013</string>
+	<string>© Kevin Wojniak, 2007-2014</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
