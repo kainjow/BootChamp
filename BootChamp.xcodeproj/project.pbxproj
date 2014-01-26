@@ -469,6 +469,7 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = BOAPP;
 				INFOPLIST_FILE = Resources/Info.plist;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = BootChamp;
 				WRAPPER_EXTENSION = app;
 			};
@@ -484,6 +485,7 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = BOAPP;
 				INFOPLIST_FILE = Resources/Info.plist;
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = BootChamp;
 				WRAPPER_EXTENSION = app;
 			};
