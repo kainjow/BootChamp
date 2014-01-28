@@ -232,6 +232,7 @@
 				A5C5CF430E76736600F53F5A /* Copy Executables */,
 				A5B417BE1069A25200B891BB /* Run genstrings */,
 				A59B00ED178120A10063960C /* Copy Frameworks */,
+				A5DFC1531898247A009A498A /* Codesign Sparkle */,
 			);
 			buildRules = (
 			);
@@ -346,6 +347,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "mdfind \"kMDItemKind == '*source*' || kMDItemKind == '*Header*'\" -onlyin . | xargs genstrings -o Resources/English.lproj\n";
+		};
+		A5DFC1531898247A009A498A /* Codesign Sparkle */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Codesign Sparkle";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "LOCATION=\"${BUILT_PRODUCTS_DIR}\"/\"${FRAMEWORKS_FOLDER_PATH}\"\nIDENTITY=\"Developer ID Application: Kevin Wojniak\"\ncodesign --verbose --force --sign \"$IDENTITY\" \"$LOCATION/Sparkle.framework\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -469,7 +484,6 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = BOAPP;
 				INFOPLIST_FILE = Resources/Info.plist;
-				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = BootChamp;
 				WRAPPER_EXTENSION = app;
 			};
@@ -485,7 +499,6 @@
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = BOAPP;
 				INFOPLIST_FILE = Resources/Info.plist;
-				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_NAME = BootChamp;
 				WRAPPER_EXTENSION = app;
 			};
