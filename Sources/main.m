@@ -12,10 +12,10 @@
 int main(void)
 {
     @autoreleasepool {
-        [NSApplication sharedApplication];
+        NSApplication *app = [NSApplication sharedApplication];
         BOStatusMenuController *controller = [[BOStatusMenuController alloc] init];
-        [NSApp setDelegate:controller];
-        [NSApp run];
+        [app setDelegate:controller];
+        [app run];
     }
     return 0;
 }
