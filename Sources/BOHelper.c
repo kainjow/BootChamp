@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	args[a++] = "--verbose";
 	args[a++] = "--legacy";
 	args[a++] = "--setBoot";
-	args[a++] = strcmp(media_arg, "-device") == 0 ? "--device" : "--folder";
+	args[a++] = strcmp(media_arg, "-device") == 0 ? "--device" : "--mount";
 	args[a++] = media_val;
 	args[a] = NULL;
 	
