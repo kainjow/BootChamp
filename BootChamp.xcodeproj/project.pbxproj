@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A50FF09B14B6B5C300EA561F /* help.htm in Resources */ = {isa = PBXBuildFile; fileRef = A50FF09914B6B5C300EA561F /* help.htm */; };
 		A51765CE17EDFFDE0015B6FC /* BOLog.m in Sources */ = {isa = PBXBuildFile; fileRef = A51765CD17EDFFDE0015B6FC /* BOLog.m */; };
-		A51E570211D6682500E862B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AA6733106869C800E1F762 /* Carbon.framework */; };
 		A51E570811D6682A00E862B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A1083F0C3C8DBC006A3862 /* Security.framework */; };
 		A51E599211D691F500E862B8 /* BOHelperInstaller in Copy Executables */ = {isa = PBXBuildFile; fileRef = A51E571311D6700700E862B8 /* BOHelperInstaller */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A51E602C11D6DFEE00E862B8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51E602B11D6DFEE00E862B8 /* Cocoa.framework */; };
@@ -88,7 +87,6 @@
 		A59B00EB17811FFE0063960C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = libs/Sparkle.framework; sourceTree = "<group>"; };
 		A59B00EF1781267D0063960C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/dsa_pub.pem; sourceTree = "<group>"; };
 		A5A1083F0C3C8DBC006A3862 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
-		A5AA6733106869C800E1F762 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		A5E2ABF015FC24B000216C2F /* Russian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Russian; path = Resources/Russian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E57FF8145A49E500F07C69 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Resources/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E57FFF145A49F500F07C69 /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = Resources/French.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A58D8D6E0E6483160073F663 /* DiskArbitration.framework in Frameworks */,
-				A51E570211D6682500E862B8 /* Carbon.framework in Frameworks */,
 				A59B00EC17811FFE0063960C /* Sparkle.framework in Frameworks */,
 				A51E570811D6682A00E862B8 /* Security.framework in Frameworks */,
 				A51E602C11D6DFEE00E862B8 /* Cocoa.framework in Frameworks */,
@@ -188,7 +185,6 @@
 				A51E602B11D6DFEE00E862B8 /* Cocoa.framework */,
 				A58D8D6D0E6483160073F663 /* DiskArbitration.framework */,
 				A5A1083F0C3C8DBC006A3862 /* Security.framework */,
-				A5AA6733106869C800E1F762 /* Carbon.framework */,
 				A59B00EB17811FFE0063960C /* Sparkle.framework */,
 			);
 			name = Frameworks;

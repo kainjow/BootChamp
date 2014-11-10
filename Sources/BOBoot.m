@@ -20,31 +20,9 @@ static NSString *const BOBootErrorDomain = @"BOBootErrorDomain";
 static BOOL BORestart()
 {
 #if 1
-    AEAddressDesc targetDesc;
-    static const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess};
-    AppleEvent eventReply = {typeNull, NULL};
-    AppleEvent appleEventToSend = {typeNull, NULL};
-    OSStatus error = noErr;
-	
-    error = AECreateDesc(typeProcessSerialNumber, &kPSNOfSystemProcess, sizeof(kPSNOfSystemProcess), &targetDesc);
-    if (error != noErr) {
-        return NO;
-    }
-	
-    error = AECreateAppleEvent(kCoreEventClass, kAERestart, &targetDesc, kAutoGenerateReturnID, kAnyTransactionID, &appleEventToSend);
-    AEDisposeDesc(&targetDesc);
-    if (error != noErr) {
-        return NO;
-    }
-	
-    error = AESend(&appleEventToSend, &eventReply, kAENoReply, kAENormalPriority, kAEDefaultTimeout, NULL, NULL);
-    AEDisposeDesc(&appleEventToSend);
-    if (error != noErr) {
-        return NO;
-    }
-	
-    AEDisposeDesc(&eventReply);
-	return (error == noErr ? YES : NO);
+    NSAppleScript *script = [[NSAppleScript alloc] initWithSource:@"tell application \"System Events\" to restart"];
+    NSDictionary *dict = nil;
+    return [script executeAndReturnError:&dict] != nil;
 #else
 	return NO; // for testing
 #endif
