@@ -11,14 +11,14 @@
 		A51765CE17EDFFDE0015B6FC /* BOLog.m in Sources */ = {isa = PBXBuildFile; fileRef = A51765CD17EDFFDE0015B6FC /* BOLog.m */; };
 		A51E570211D6682500E862B8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AA6733106869C800E1F762 /* Carbon.framework */; };
 		A51E570811D6682A00E862B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A1083F0C3C8DBC006A3862 /* Security.framework */; };
-		A51E599211D691F500E862B8 /* BOHelperInstaller in Copy Executables */ = {isa = PBXBuildFile; fileRef = A51E571311D6700700E862B8 /* BOHelperInstaller */; };
+		A51E599211D691F500E862B8 /* BOHelperInstaller in Copy Executables */ = {isa = PBXBuildFile; fileRef = A51E571311D6700700E862B8 /* BOHelperInstaller */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A51E602C11D6DFEE00E862B8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51E602B11D6DFEE00E862B8 /* Cocoa.framework */; };
 		A58D8D6E0E6483160073F663 /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58D8D6D0E6483160073F663 /* DiskArbitration.framework */; };
 		A58EA2C20E7191DE008837F3 /* appicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A58EA2C10E7191DE008837F3 /* appicon.icns */; };
 		A59B00EC17811FFE0063960C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59B00EB17811FFE0063960C /* Sparkle.framework */; };
-		A59B00EE178120AC0063960C /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A59B00EB17811FFE0063960C /* Sparkle.framework */; };
+		A59B00EE178120AC0063960C /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A59B00EB17811FFE0063960C /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A59B00F01781267D0063960C /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = A59B00EF1781267D0063960C /* dsa_pub.pem */; };
-		A5C5CF410E76734800F53F5A /* BOHelper in Copy Executables */ = {isa = PBXBuildFile; fileRef = A58EA42E0E719AA0008837F3 /* BOHelper */; };
+		A5C5CF410E76734800F53F5A /* BOHelper in Copy Executables */ = {isa = PBXBuildFile; fileRef = A58EA42E0E719AA0008837F3 /* BOHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A5E57FF9145A49E500F07C69 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5E57FF7145A49E500F07C69 /* Localizable.strings */; };
 		A5E58014145A4AC000F07C69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58012145A4AC000F07C69 /* main.m */; };
 		A5E58019145A4ACD00F07C69 /* BOStatusMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58017145A4ACD00F07C69 /* BOStatusMenuController.m */; };
@@ -282,7 +282,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
 						SystemCapabilities = {
@@ -507,7 +507,6 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -517,10 +516,12 @@
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Kevin Wojniak";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
@@ -539,6 +540,7 @@
 				GCC_WARN_UNUSED_PARAMETER = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				WARNING_CFLAGS = "-Wall";
@@ -548,7 +550,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -558,9 +559,11 @@
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Kevin Wojniak";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
