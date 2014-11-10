@@ -107,7 +107,7 @@
 		A5E58025145A4AF100F07C69 /* BOTaskAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOTaskAdditions.h; path = Sources/BOTaskAdditions.h; sourceTree = "<group>"; };
 		A5E912481780F77D00B8D44C /* NSApplication+LoginItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSApplication+LoginItems.h"; path = "libs/NSAppLoginItems/NSApplication+LoginItems.h"; sourceTree = "<group>"; };
 		A5E912491780F77D00B8D44C /* NSApplication+LoginItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSApplication+LoginItems.m"; path = "libs/NSAppLoginItems/NSApplication+LoginItems.m"; sourceTree = "<group>"; };
-		A5F2304C1A11647A00EFD2A1 /* Finnish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Finnish; path = Resources/Finnish.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5F2304C1A11647A00EFD2A1 /* Finnish */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Finnish; path = Resources/Finnish.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
