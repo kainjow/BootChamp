@@ -9,8 +9,8 @@
 
 + (instancetype)sharedLog;
 
-- (void)log:(NSString *)msg, ...;
+- (void)log:(NSString *)msg, ... NS_FORMAT_FUNCTION(1, 2);
 
 @end
 
-#define BOLog(fmt, ...) [[BOLog sharedLog] log:fmt, __VA_ARGS__]
+#define BOLog(...) [[BOLog sharedLog] log:__VA_ARGS__]
