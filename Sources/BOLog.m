@@ -41,6 +41,7 @@
 
 - (void)log:(NSString *)msg, ...
 {
+    NSDate *date = [NSDate date];
     va_list ap;
     va_start(ap, msg);
     NSString *fullmsg = [[NSString alloc] initWithFormat:msg arguments:ap];
@@ -48,7 +49,7 @@
     if (![fullmsg hasSuffix:@"\n"]) {
         fullmsg = [fullmsg stringByAppendingString:@"\n"];
     }
-    NSData *data = [fullmsg dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [[NSString stringWithFormat:@"%@ %@", date, fullmsg] dataUsingEncoding:NSUTF8StringEncoding];
     dispatch_async(queue_, ^{
         [fileHandle_ writeData:data];
     });
