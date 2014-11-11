@@ -7,8 +7,6 @@
 
 @implementation BOLog
 {
-    NSString *logDir_;
-    NSFileManager *fm_;
     NSFileHandle *fileHandle_;
     dispatch_queue_t queue_;
 }
@@ -25,14 +23,13 @@
 
 - (id)init
 {
-    if ((self = [super init]) != nil)
-    {
-        logDir_ = [@"~/Library/Application Support/BootChamp/Logs" stringByStandardizingPath];
-        fm_ = [[NSFileManager alloc] init];
-        (void)[fm_ createDirectoryAtPath:logDir_ withIntermediateDirectories:YES attributes:nil error:nil];
+    if ((self = [super init]) != nil) {
+        NSString *logDir = [@"~/Library/Application Support/BootChamp/Logs" stringByStandardizingPath];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        (void)[fm createDirectoryAtPath:logDir withIntermediateDirectories:YES attributes:nil error:nil];
         NSString *logFileName = [NSString stringWithFormat:@"%@.txt", [[NSDate date] descriptionWithCalendarFormat:@"%Y%m%d%H%M%S" timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0] locale:nil]];
-        NSString *logPath = [logDir_ stringByAppendingPathComponent:logFileName];
-        (void)[fm_ createFileAtPath:logPath contents:nil attributes:nil];
+        NSString *logPath = [logDir stringByAppendingPathComponent:logFileName];
+        (void)[fm createFileAtPath:logPath contents:nil attributes:nil];
         fileHandle_ = [NSFileHandle fileHandleForWritingAtPath:logPath];
         queue_ = dispatch_queue_create("com.kainjow.BootChamp.log", DISPATCH_QUEUE_SERIAL);
     }
