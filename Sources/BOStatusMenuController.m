@@ -13,11 +13,15 @@
 #import "NSApplication+LoginItems.h"
 #import <Sparkle/Sparkle.h>
 #import "BOLog.h"
+#import "BOEFI.h"
 #import "BOTaskAdditions.h"
 
 #define BOPrefsLaunchAtStartup	@"LaunchAtStartup"
 
 @implementation BOStatusMenuController
+{
+    NSString* _bootableEFIDisk;
+}
 
 + (void)initialize
 {
@@ -167,6 +171,11 @@
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 	dispatch_async(queue, ^{
 		NSArray *media = [BOMedia allMedia];
+        if (_bootableEFIDisk && media.count == 1) {
+            // hijack
+            BOMedia *item = media.lastObject;
+            item.deviceName = _bootableEFIDisk;
+        }
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[self updateBootMenuWithMedia:media];
 		});
@@ -195,6 +204,8 @@
     BOLog(@"disks\n%@", output);
     (void)[NSTask launchTaskAtPath:@"/sbin/mount" arguments:nil output:&output];
     BOLog(@"mount\n%@", output);
+    
+    _bootableEFIDisk = BOBootableEFI();
     
 	statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
 	[statusItem setHighlightMode:YES];

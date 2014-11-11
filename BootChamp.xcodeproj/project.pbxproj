@@ -12,6 +12,7 @@
 		A51E570811D6682A00E862B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A1083F0C3C8DBC006A3862 /* Security.framework */; };
 		A51E599211D691F500E862B8 /* BOHelperInstaller in Copy Executables */ = {isa = PBXBuildFile; fileRef = A51E571311D6700700E862B8 /* BOHelperInstaller */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A51E602C11D6DFEE00E862B8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51E602B11D6DFEE00E862B8 /* Cocoa.framework */; };
+		A5468BB51A11C6A900483B0F /* BOEFI.m in Sources */ = {isa = PBXBuildFile; fileRef = A5468BB41A11C6A900483B0F /* BOEFI.m */; };
 		A58D8D6E0E6483160073F663 /* DiskArbitration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58D8D6D0E6483160073F663 /* DiskArbitration.framework */; };
 		A58EA2C20E7191DE008837F3 /* appicon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A58EA2C10E7191DE008837F3 /* appicon.icns */; };
 		A59B00EC17811FFE0063960C /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59B00EB17811FFE0063960C /* Sparkle.framework */; };
@@ -81,6 +82,8 @@
 		A51E571311D6700700E862B8 /* BOHelperInstaller */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelperInstaller; sourceTree = BUILT_PRODUCTS_DIR; };
 		A51E602B11D6DFEE00E862B8 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		A52D6EBE16687B5F00B7E885 /* hr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5468BB31A11C69800483B0F /* BOEFI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BOEFI.h; path = Sources/BOEFI.h; sourceTree = "<group>"; };
+		A5468BB41A11C6A900483B0F /* BOEFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOEFI.m; path = Sources/BOEFI.m; sourceTree = "<group>"; };
 		A58D8D6D0E6483160073F663 /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = /System/Library/Frameworks/DiskArbitration.framework; sourceTree = "<absolute>"; };
 		A58EA2C10E7191DE008837F3 /* appicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appicon.icns; path = Resources/appicon.icns; sourceTree = "<group>"; };
 		A58EA42E0E719AA0008837F3 /* BOHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelper; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +136,8 @@
 				A5E58017145A4ACD00F07C69 /* BOStatusMenuController.m */,
 				A5E5801B145A4ADA00F07C69 /* BOBoot.h */,
 				A5E5801A145A4ADA00F07C69 /* BOBoot.m */,
+				A5468BB31A11C69800483B0F /* BOEFI.h */,
+				A5468BB41A11C6A900483B0F /* BOEFI.m */,
 				A5E58021145A4AE300F07C69 /* BOMedia.h */,
 				A5E58020145A4AE300F07C69 /* BOMedia.m */,
 				A5E58025145A4AF100F07C69 /* BOTaskAdditions.h */,
@@ -361,6 +366,7 @@
 				A5E5801C145A4ADA00F07C69 /* BOBoot.m in Sources */,
 				A5E58022145A4AE300F07C69 /* BOMedia.m in Sources */,
 				A5E58028145A4AF100F07C69 /* BOTaskAdditions.m in Sources */,
+				A5468BB51A11C6A900483B0F /* BOEFI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
