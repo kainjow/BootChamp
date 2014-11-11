@@ -10,6 +10,7 @@
     NSString *logDir_;
     NSFileManager *fm_;
     NSFileHandle *fileHandle_;
+    dispatch_queue_t queue_;
 }
 
 + (instancetype)sharedLog
@@ -33,6 +34,7 @@
         NSString *logPath = [logDir_ stringByAppendingPathComponent:logFileName];
         (void)[fm_ createFileAtPath:logPath contents:nil attributes:nil];
         fileHandle_ = [NSFileHandle fileHandleForWritingAtPath:logPath];
+        queue_ = dispatch_queue_create("com.kainjow.BootChamp.log", DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -46,7 +48,10 @@
     if (![fullmsg hasSuffix:@"\n"]) {
         fullmsg = [fullmsg stringByAppendingString:@"\n"];
     }
-    [fileHandle_ writeData:[fullmsg dataUsingEncoding:NSUTF8StringEncoding]];
+    NSData *data = [fullmsg dataUsingEncoding:NSUTF8StringEncoding];
+    dispatch_async(queue_, ^{
+        [fileHandle_ writeData:data];
+    });
 }
 
 @end
