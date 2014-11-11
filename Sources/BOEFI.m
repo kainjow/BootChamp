@@ -86,7 +86,7 @@ NSString* BOBootableEFI(void)
     
     BOOL bootable = haveBootFile && haveMSDir;
     BOLog(@"have bootable EFI: %d", bootable);
-    if (bootable ||1) {
+    if (bootable) {
         return diskID;
     }
     
