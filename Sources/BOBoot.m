@@ -99,7 +99,7 @@ BOOL BOAuthorizationRequired(void)
     }
 	// verify dest and src has same size
 	if (stat(src, &src_buf) != 0 || src_buf.st_size != dest_buf.st_size) {
-        BOLog(@"%s: Src sizes mismatch (src=%u, dest=%u)", __FUNCTION__, src_buf.st_size, dest_buf.st_size);
+        BOLog(@"%s: Src sizes mismatch (src=%lld, dest=%lld)", __FUNCTION__, src_buf.st_size, dest_buf.st_size);
 		return YES;
     }
 	// verify dest and src are equal
