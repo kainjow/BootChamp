@@ -147,4 +147,10 @@
 	return array;
 }
 
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"<%@: %p> mount=%@, dev=%@, name=%@",
+            [self className], self, self.mountPoint, self.deviceName, self.name];
+}
+
 @end

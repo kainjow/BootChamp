@@ -148,6 +148,7 @@
 
 - (void)updateBootMenuWithMedia:(NSArray *)media
 {
+    BOLog(@"Update menu with media: %@", media);
 	[self updateBootMenuTitle];
     [self updateBootMenu:bootMenuItem withMedia:media];
     [self updateBootMenu:altBootMenuItem withMedia:media];
@@ -186,6 +187,13 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification * __unused)notif
 {
+    BOLog(@"%@ %@", [[NSProcessInfo processInfo] processName], [[NSBundle mainBundle] objectForInfoDictionaryKey:(id)kCFBundleVersionKey]);
+    NSString *output = nil;
+    (void)[NSTask launchTaskAtPath:@"/usr/sbin/diskutil" arguments:@[@"list"] output:&output];
+    BOLog(@"disks\n%@", output);
+    (void)[NSTask launchTaskAtPath:@"/sbin/mount" arguments:nil output:&output];
+    BOLog(@"mount\n%@", output);
+    
 	statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
 	[statusItem setHighlightMode:YES];
     
