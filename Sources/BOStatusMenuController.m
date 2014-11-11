@@ -13,6 +13,7 @@
 #import "NSApplication+LoginItems.h"
 #import <Sparkle/Sparkle.h>
 #import "BOLog.h"
+#import "BOTaskAdditions.h"
 
 #define BOPrefsLaunchAtStartup	@"LaunchAtStartup"
 
@@ -187,6 +188,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification * __unused)notif
 {
+    // Log some helpful info
     BOLog(@"%@ %@", [[NSProcessInfo processInfo] processName], [[NSBundle mainBundle] objectForInfoDictionaryKey:(id)kCFBundleVersionKey]);
     NSString *output = nil;
     (void)[NSTask launchTaskAtPath:@"/usr/sbin/diskutil" arguments:@[@"list"] output:&output];
@@ -212,7 +214,6 @@
 	NSMenu *menu = [[NSMenu alloc] init];
 	[menu setDelegate:self];
 	
-	// restart into windows
 	bootMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
     altBootMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:Nil keyEquivalent:@""];
     [altBootMenuItem setAlternate:YES];
