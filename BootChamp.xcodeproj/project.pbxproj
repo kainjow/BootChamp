@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A50286C81A1331FC009E02AD /* BOTaskAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58024145A4AF100F07C69 /* BOTaskAdditions.m */; };
 		A50FF09B14B6B5C300EA561F /* help.htm in Resources */ = {isa = PBXBuildFile; fileRef = A50FF09914B6B5C300EA561F /* help.htm */; };
 		A51765CE17EDFFDE0015B6FC /* BOLog.m in Sources */ = {isa = PBXBuildFile; fileRef = A51765CD17EDFFDE0015B6FC /* BOLog.m */; };
 		A51E570811D6682A00E862B8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A1083F0C3C8DBC006A3862 /* Security.framework */; };
@@ -383,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5E58038145A4B7900F07C69 /* BOHelper.m in Sources */,
+				A50286C81A1331FC009E02AD /* BOTaskAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
