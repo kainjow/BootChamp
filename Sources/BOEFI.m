@@ -34,9 +34,9 @@ static BOOL diskMountPoint(NSString *diskutil, NSString *diskID, NSString **moun
         BOLog(@"Invalid output: %@", output);
         return NO;
     }
-    *mountPoint = dict[@"MountPoint"];
-    if (!*mountPoint || [*mountPoint length] == 0) {
-        return NO;
+    NSString *tmpMountPoint = dict[@"MountPoint"];
+    if (tmpMountPoint && [tmpMountPoint length] > 0) {
+        *mountPoint = tmpMountPoint;
     }
     return YES;
 }
