@@ -25,7 +25,7 @@
 		A5E5801C145A4ADA00F07C69 /* BOBoot.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E5801A145A4ADA00F07C69 /* BOBoot.m */; };
 		A5E58022145A4AE300F07C69 /* BOMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58020145A4AE300F07C69 /* BOMedia.m */; };
 		A5E58028145A4AF100F07C69 /* BOTaskAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58024145A4AF100F07C69 /* BOTaskAdditions.m */; };
-		A5E58038145A4B7900F07C69 /* BOHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = A5E58010145A4AB000F07C69 /* BOHelper.c */; };
+		A5E58038145A4B7900F07C69 /* BOHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58010145A4AB000F07C69 /* BOHelper.m */; };
 		A5E58039145A4B7C00F07C69 /* BOHelperInstaller.c in Sources */ = {isa = PBXBuildFile; fileRef = A5E5800F145A4AB000F07C69 /* BOHelperInstaller.c */; };
 		A5E9124A1780F77D00B8D44C /* NSApplication+LoginItems.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E912491780F77D00B8D44C /* NSApplication+LoginItems.m */; };
 /* End PBXBuildFile section */
@@ -98,7 +98,7 @@
 		A5E58002145A49FD00F07C69 /* Swedish */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Swedish; path = Resources/Swedish.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E5800E145A4AB000F07C69 /* BOHelperInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOHelperInstaller.h; path = Sources/BOHelperInstaller.h; sourceTree = "<group>"; };
 		A5E5800F145A4AB000F07C69 /* BOHelperInstaller.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BOHelperInstaller.c; path = Sources/BOHelperInstaller.c; sourceTree = "<group>"; };
-		A5E58010145A4AB000F07C69 /* BOHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = BOHelper.c; path = Sources/BOHelper.c; sourceTree = "<group>"; };
+		A5E58010145A4AB000F07C69 /* BOHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOHelper.m; path = Sources/BOHelper.m; sourceTree = "<group>"; };
 		A5E58012145A4AC000F07C69 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Sources/main.m; sourceTree = "<group>"; };
 		A5E58017145A4ACD00F07C69 /* BOStatusMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOStatusMenuController.m; path = Sources/BOStatusMenuController.m; sourceTree = "<group>"; };
 		A5E58018145A4ACD00F07C69 /* BOStatusMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOStatusMenuController.h; path = Sources/BOStatusMenuController.h; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 		A50FF09814B6B57800EA561F /* BOHelper */ = {
 			isa = PBXGroup;
 			children = (
-				A5E58010145A4AB000F07C69 /* BOHelper.c */,
+				A5E58010145A4AB000F07C69 /* BOHelper.m */,
 			);
 			name = BOHelper;
 			sourceTree = "<group>";
@@ -382,7 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5E58038145A4B7900F07C69 /* BOHelper.c in Sources */,
+				A5E58038145A4B7900F07C69 /* BOHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
