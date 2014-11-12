@@ -116,7 +116,7 @@ NSString* BOBootableEFI(void)
         }
         BOLog(@"Checking EFI for %@", diskID);
         if (checkDisk(diskID)) {
-            return diskID;
+            return [@"/dev/" stringByAppendingString:diskID];
         }
     }
     BOLog(@"No bootable EFI found");

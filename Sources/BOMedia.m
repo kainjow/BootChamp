@@ -120,8 +120,6 @@
 			continue;
 		}
 
-		BOMedia *media = [[BOMedia alloc] init];
-		
 		BOOL isValidBootCampVolume = NO;
 		
 		NSString *volKind = (NSString *)CFDictionaryGetValue(desc, kDADiskDescriptionVolumeKindKey);
@@ -130,17 +128,12 @@
 		for (NSString *kind in allowedKinds) {
 			if (volKind && [kind rangeOfString:volKind options:NSCaseInsensitiveSearch].location != NSNotFound) {
 				isValidBootCampVolume = YES;
-				
-				if ([kind isEqualToString:KIND_NTFS_3G] || [kind isEqualToString:KIND_TUXERA]) {
-					// When NTFS-3G/MacFUSE is installed we need to use
-					// bless's --device option instead of --folder
-					// for some reason --folder doesn't work in this situation.
-					media.deviceName = [NSString stringWithUTF8String:bsdName];
-				}
 				break;
 			}
 		}
 		
+        BOMedia *media = [[BOMedia alloc] init];
+        media.legacy = YES;
         NSString *mountPoint = [mountURL path];
 		if (isValidBootCampVolume && [self isBootableVolume:mountPoint]) {
 			media.mountPoint = mountPoint;

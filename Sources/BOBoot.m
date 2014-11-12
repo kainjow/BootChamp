@@ -151,19 +151,19 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 	
 	NSMutableArray *args = [NSMutableArray array];
 	if (media.deviceName) {
-		[args addObject:@"-device"];
+        [args addObject:@"-mode"];
+		[args addObject:@"device"];
+        [args addObject:@"-media"];
 		[args addObject:media.deviceName];
 	}
 	else {
-		[args addObject:@"-folder"];
+        [args addObject:@"-mode"];
+        [args addObject:@"mount"];
+        [args addObject:@"-media"];
 		[args addObject:media.mountPoint];
 	}
-	[args addObject:@"-nextonly"];
-	[args addObject:@"yes"];
-	// --nextonly used to be a user-settable preference in 1.2 and previous versions,
-	// but in 1.2.1 it was removed, but we keep it here for now in the app to stay
-	// compatible with older versions of the helper tool so the user doesn't have to
-	// reinstall it.
+    [args addObject:@"-legacy"];
+    [args addObject:media.legacy ? @"yes" : @"no"];
 	
     BOLog(@"Helper path: %@", toolDest);
     BOLog(@"Helper args: %@", [args description]);

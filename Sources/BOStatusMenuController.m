@@ -175,6 +175,7 @@
             // hijack
             BOMedia *item = media.lastObject;
             item.deviceName = _bootableEFIDisk;
+            item.legacy = NO;
         }
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[self updateBootMenuWithMedia:media];
