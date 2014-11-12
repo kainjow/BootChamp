@@ -126,11 +126,10 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 	}
 	
 	NSString *output = nil;
-	BOTaskReturn ret;
 	NSString *toolDest = BOHelperDestination();
 	if (BOAuthorizationRequired()) {
 		NSString *prompt = [NSString stringWithFormat:NSLocalizedString(@"Administrative access is needed to change your startup disk to \"%@\".", ""), media.name];
-		ret = [NSTask launchTaskAsRootAtPath:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelperInstaller"] arguments:@[BOHelperSource(), toolDest] prompt:prompt output:&output];
+		BOTaskReturn ret = [NSTask launchTaskAsRootAtPath:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelperInstaller"] arguments:@[BOHelperSource(), toolDest] prompt:prompt output:&output];
 		switch (ret) {
 			case BOTaskLaunched:
 				if (output && [output length] > 0) {
@@ -166,14 +165,15 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 	// compatible with older versions of the helper tool so the user doesn't have to
 	// reinstall it.
 	
-	ret = [NSTask launchTaskAtPath:toolDest arguments:args output:&output];
-	switch (ret) {
-		case BOTaskLaunched:
-			break;
-		case BOTaskError:
-			if (error)
-				*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:output ? @{NSLocalizedDescriptionKey : output} : nil];
-			return NO;
+    BOLog(@"Helper path: %@", toolDest);
+    BOLog(@"Helper args: %@", [args description]);
+	int status = [NSTask launchTaskAtPath:toolDest arguments:args output:&output];
+    BOLog(@"Helper status: %d", status);
+    BOLog(@"Helper output: %@", output);
+    if (status != EXIT_SUCCESS) {
+        if (error)
+            *error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:output ? @{NSLocalizedDescriptionKey : output} : nil];
+        return NO;
 	}
 	
     if (output != nil) {
