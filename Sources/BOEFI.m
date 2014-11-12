@@ -25,13 +25,13 @@ static BOOL diskMountPoint(NSString *diskutil, NSString *diskID, NSString **moun
     *mountPoint = nil;
     NSString *output = nil;
     if (launchTask(diskutil, @[@"info", @"-plist", diskID], &output) != 0) {
-        BOLog(@"Can't get info for %@: %@", diskID, output);
+        BOLog(@"%s: can't get info for %@: %@", __FUNCTION__, diskID, output);
         return NO;
     }
     NSData *data = [output dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dict = [NSPropertyListSerialization propertyListWithData:data options:0 format:nil error:nil];
     if (!dict || ![dict isKindOfClass:[NSDictionary class]]) {
-        BOLog(@"Invalid output: %@", output);
+        BOLog(@"%s: invalid output: %@", __FUNCTION__, output);
         return NO;
     }
     NSString *tmpMountPoint = dict[@"MountPoint"];
@@ -52,7 +52,7 @@ static BOOL checkDisk(NSString *diskID)
     if (!mountPoint) {
         NSString *output = nil;
         if (launchTask(diskutil, @[@"mount", @"readOnly", diskID], &output) != 0) {
-            BOLog(@"Can't mount %@: %@", diskID, output);
+            BOLog(@"%s: can't mount %@: %@", __FUNCTION__, diskID, output);
             return NO;
         }
         if (!diskMountPoint(diskutil, diskID, &mountPoint) || !mountPoint) {
@@ -61,7 +61,7 @@ static BOOL checkDisk(NSString *diskID)
         unmountEFI = YES;
     }
     
-    BOLog(@"Mount point = %@:", mountPoint);
+    BOLog(@"%s: mount point = %@:", __FUNCTION__, mountPoint);
     
     NSFileManager *fm = [NSFileManager defaultManager];
     
@@ -71,7 +71,7 @@ static BOOL checkDisk(NSString *diskID)
         if ([file hasPrefix:@".Spotlight"] || [file hasPrefix:@".Trashes"]) {
             continue;
         }
-        BOLog(@"%@", file);
+        BOLog(@"%s: %@", __FUNCTION__, file);
     }
     
     BOOL isDir;
@@ -86,39 +86,39 @@ static BOOL checkDisk(NSString *diskID)
     }
     
     BOOL bootable = haveBootFile && haveMSDir;
-    BOLog(@"have bootable EFI: %d", bootable);
-    if (bootable) {
-        return YES;
-    }
-    
-    return NO;
+    BOLog(@"%s: bootable EFI = %d", __FUNCTION__, bootable);
+    return bootable;
 }
 
 static BOOL isDiskIDValid(NSString *diskID) {
     DADiskRef disk = DADiskCreateFromBSDName(kCFAllocatorDefault, [BOMedia session], diskID.UTF8String);
     if (!disk) {
+        BOLog(@"%s: NULL DADisk for %@", __FUNCTION__, diskID);
         return NO;
     }
     NSDictionary *desc = (__bridge_transfer NSDictionary*)DADiskCopyDescription(disk);
     CFRelease(disk);
     if (!desc) {
+        BOLog(@"%s: NULL desc for %@", __FUNCTION__, diskID);
         return NO;
     }
+    BOLog(@"%s: %@ is valid", __FUNCTION__, diskID);
     return YES;
 }
 
 NSString* BOBootableEFI(void)
 {
+    BOLog(@"%s start", __FUNCTION__);
     for (int i = 0; i < 4; ++i) {
         NSString *diskID = [NSString stringWithFormat:@"disk%ds1", i];
         if (!isDiskIDValid(diskID)) {
             continue;
         }
-        BOLog(@"Checking EFI for %@", diskID);
+        BOLog(@"%s: checking %@", __FUNCTION__, diskID);
         if (checkDisk(diskID)) {
             return [@"/dev/" stringByAppendingString:diskID];
         }
     }
-    BOLog(@"No bootable EFI found");
+    BOLog(@"%s: no bootable EFI found", __FUNCTION__);
     return nil;
 }
