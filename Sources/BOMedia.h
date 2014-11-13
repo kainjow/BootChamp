@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <DiskArbitration/DiskArbitration.h>
 
 @interface BOMedia : NSObject
 
@@ -16,5 +16,8 @@
 @property (strong) NSString *mountPoint;
 @property (strong) NSString *deviceName;
 @property (strong) NSString *name;
+@property BOOL legacy;
+
++ (DASessionRef)session;
 
 @end

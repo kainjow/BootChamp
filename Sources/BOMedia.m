@@ -7,8 +7,8 @@
 //
 
 #import "BOMedia.h"
+#import "BOLog.h"
 #import <sys/mount.h>
-#import <DiskArbitration/DiskArbitration.h>
 
 // http://macntfs-3g.blogspot.com/
 #define KIND_NTFS_3G		@"ntfs-3g"
@@ -80,13 +80,26 @@
     return NO;
 }
 
++ (DASessionRef)session
+{
+    static DASessionRef session = NULL;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        session = DASessionCreate(kCFAllocatorDefault);
+        if (!session) {
+            BOLog(@"DASessionCreate failed.");
+        }
+    });
+    return session;
+}
+
 + (NSArray *)allMedia
 {
-	DASessionRef session = DASessionCreate(kCFAllocatorDefault);
-	if (!session) {
-		NSLog(@"DASessionCreate failed.");
-		return nil;
-	}
+    DASessionRef session = [self session];
+    if (!session) {
+        NSLog(@"DASessionCreate failed.");
+        return nil;
+    }
 	
 	NSArray *allowedKinds = @[@"ntfs", @"msdos", @"ufsd", @"cd9660", KIND_NTFS_3G, KIND_PARAGON_NTFS, KIND_TUXERA];
 	
@@ -107,8 +120,6 @@
 			continue;
 		}
 
-		BOMedia *media = [[BOMedia alloc] init];
-		
 		BOOL isValidBootCampVolume = NO;
 		
 		NSString *volKind = (NSString *)CFDictionaryGetValue(desc, kDADiskDescriptionVolumeKindKey);
@@ -117,17 +128,12 @@
 		for (NSString *kind in allowedKinds) {
 			if (volKind && [kind rangeOfString:volKind options:NSCaseInsensitiveSearch].location != NSNotFound) {
 				isValidBootCampVolume = YES;
-				
-				if ([kind isEqualToString:KIND_NTFS_3G] || [kind isEqualToString:KIND_TUXERA]) {
-					// When NTFS-3G/MacFUSE is installed we need to use
-					// bless's --device option instead of --folder
-					// for some reason --folder doesn't work in this situation.
-					media.deviceName = [NSString stringWithUTF8String:bsdName];
-				}
 				break;
 			}
 		}
 		
+        BOMedia *media = [[BOMedia alloc] init];
+        media.legacy = YES;
         NSString *mountPoint = [mountURL path];
 		if (isValidBootCampVolume && [self isBootableVolume:mountPoint]) {
 			media.mountPoint = mountPoint;
@@ -141,8 +147,6 @@
 		
 		CFRelease(desc);
 	}
-	
-	CFRelease(session);
 	
 	return array;
 }
