@@ -10,6 +10,9 @@
 		font-family: "lucida grande";
 		font-size: 10pt;
 	}
+	code {
+		background-color: #eee;
+	}
 	</style>
 </head>
 
@@ -41,7 +44,13 @@
 <p>You can also view the logs at ~/Library/Application Support/BootChamp/Logs to see if there are any relevant error messages.</p>
 
 <h3>Uninstall</h3>
-<p>To uninstall, remove BootChamp.app from where you installed it, remove /Library/Application Support/BootChamp/BOHelper and ~/Library/Application Support/BootChamp/Logs, and remove BootChamp from the Login Items in System Preferences > Accounts.</p>
+<ul>
+<li>Remove BootChamp.app</li>
+<li>Remove /Library/Application Support/BootChamp/BOHelper</li>
+<li>Remove ~/Library/Application Support/BootChamp/Logs</li>
+<li>Remove BootChamp from the Login Items in System Preferences > Users & Groups (or Accounts on 10.6)</li>
+<li>Remove preferences by running in Terminal <code>defaults delete com.kainjow.BootChamp</code></li>
+</ul>
 
 <h3>Credits</h3>
 <p>
@@ -76,6 +85,7 @@ Korean Localization: 박우석
 <ul>
 	<li>1.6
 		<ul>
+			<li>Added compatibility for Windows EFI booting</li>
 			<li>Added Finnish and Korean localizations</li>
 		</ul>
 	</li>
