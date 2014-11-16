@@ -49,7 +49,9 @@
         NSFileManager *fm = [NSFileManager defaultManager];
         (void)[fm createDirectoryAtPath:logDir withIntermediateDirectories:YES attributes:nil error:nil];
         [self removeOldLogs:logDir];
-        NSString *logFileName = [NSString stringWithFormat:@"%@.txt", [[NSDate date] descriptionWithCalendarFormat:@"%Y%m%d%H%M%S" timeZone:[NSTimeZone timeZoneForSecondsFromGMT:0] locale:nil]];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *logFileName = [NSString stringWithFormat:@"%@.txt", [dateFormatter stringFromDate:[NSDate date]]];
         NSString *logPath = [logDir stringByAppendingPathComponent:logFileName];
         (void)[fm createFileAtPath:logPath contents:nil attributes:nil];
         fileHandle_ = [NSFileHandle fileHandleForWritingAtPath:logPath];
