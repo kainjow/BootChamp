@@ -77,7 +77,7 @@
 /* Begin PBXFileReference section */
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* BootChamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BootChamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A50286CA1A17A86F009E02AD /* Korean */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Korean; path = Resources/Korean.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A50286CA1A17A86F009E02AD /* Korean */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Korean; path = Resources/Korean.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A50FF09A14B6B5C300EA561F /* English */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = English; path = Resources/English.lproj/help.htm; sourceTree = "<group>"; };
 		A51765CC17EDFFDE0015B6FC /* BOLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOLog.h; path = Sources/BOLog.h; sourceTree = "<group>"; };
 		A51765CD17EDFFDE0015B6FC /* BOLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOLog.m; path = Sources/BOLog.m; sourceTree = "<group>"; };
