@@ -188,7 +188,7 @@
 	[self updateBootMenuTitle];
 }
 
-- (id)init
+- (instancetype)init
 {
     if ((self = [super init]) != nil) {
         (void)[BOLog sharedLog]; // init log;

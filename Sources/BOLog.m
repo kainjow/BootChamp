@@ -42,7 +42,7 @@
     }
 }
 
-- (id)init
+- (instancetype)init
 {
     if ((self = [super init]) != nil) {
         NSString *logDir = [@"~/Library/Application Support/BootChamp/Logs" stringByStandardizingPath];
