@@ -5,7 +5,8 @@
 
 #import "BOTaskAdditions.h"
 
-static void die(NSString *format, ...) {
+static int die(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
+
 static int die(NSString *format, ...) {
     va_list ap;
     va_start(ap, format);
@@ -77,7 +78,7 @@ static int run() {
         output = [output stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
     if (status != 0) {
-        return die([@"Bless failed:\n\n" stringByAppendingString:output]);
+        return die(@"%@", [@"Bless failed:\n\n" stringByAppendingString:output]);
     }
     
     return EXIT_SUCCESS;
