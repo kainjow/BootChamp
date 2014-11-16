@@ -6,22 +6,24 @@
 #import "BOTaskAdditions.h"
 
 static void die(NSString *format, ...) {
+static int die(NSString *format, ...) {
     va_list ap;
     va_start(ap, format);
     NSString *str = [[NSString alloc] initWithFormat:format arguments:ap];
     va_end(ap);
     fprintf(stdout, "%s\n", str.UTF8String);
     exit(EXIT_FAILURE);
+    return EXIT_FAILURE;
 }
 
 static int run() {
     if (geteuid() != 0) {
-        die(@"Must be run as root.");
+        return die(@"Must be run as root.");
     }
     
     NSMutableArray *argv = [[[NSProcessInfo processInfo] arguments] mutableCopy];
     if (argv.count % 2 != 1) {
-        die(@"Invalid number of arguments.");
+        return die(@"Invalid number of arguments.");
     }
     [argv removeObjectAtIndex:0]; // pop argv[0]
     NSString *mode = nil;
@@ -46,13 +48,13 @@ static int run() {
         [argv removeObjectAtIndex:0];
     }
     if (!mode || (![mode isEqualToString:@"device"] && ![mode isEqualToString:@"mount"])) {
-        die(@"Missing or invalid mode arg.");
+        return die(@"Missing or invalid mode arg.");
     }
     if (!media) {
-        die(@"Missing media arg.");
+        return die(@"Missing media arg.");
     }
     if (legacy && (![legacy isEqualToString:@"yes"] && ![legacy isEqualToString:@"no"])) {
-        die(@"Invalid nextonly arg.");
+        return die(@"Invalid nextonly arg.");
     }
     
     NSMutableArray *taskArgs = [NSMutableArray array];
@@ -75,7 +77,7 @@ static int run() {
         output = [output stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
     if (status != 0) {
-        die([@"Bless failed:\n\n" stringByAppendingString:output]);
+        return die([@"Bless failed:\n\n" stringByAppendingString:output]);
     }
     
     return EXIT_SUCCESS;
