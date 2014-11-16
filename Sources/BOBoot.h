@@ -17,7 +17,6 @@ enum {
 	BOBootRestartFailedError,
 };
 
-
 @class BOMedia;
 
 BOOL BOAuthorizationRequired(void);

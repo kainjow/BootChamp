@@ -109,6 +109,7 @@ static BOOL isDiskIDValid(NSString *diskID) {
 NSString* BOBootableEFI(void)
 {
     BOLog(@"%s start", __FUNCTION__);
+    // This is hacky. Should probably use DiskArbitration
     for (int i = 0; i < 4; ++i) {
         NSString *diskID = [NSString stringWithFormat:@"disk%ds1", i];
         if (!isDiskIDValid(diskID)) {

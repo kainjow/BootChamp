@@ -11,11 +11,5 @@
 @class SUUpdater;
 
 @interface BOStatusMenuController : NSObject <NSMenuDelegate, NSApplicationDelegate>
-{
-	NSStatusItem *statusItem;
-	NSMenuItem *bootMenuItem;
-    NSMenuItem *altBootMenuItem;
-    SUUpdater *updater;
-}
 
 @end

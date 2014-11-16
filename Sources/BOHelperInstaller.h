@@ -8,4 +8,4 @@
  */
 
 #include <fcntl.h>
-#define TOOL_MODE	(S_IRWXU | S_IRGRP|S_IXGRP | S_IROTH|S_IXOTH | S_ISUID)
+#define TOOL_MODE (S_IRWXU | S_IRGRP|S_IXGRP | S_IROTH|S_IXOTH | S_ISUID)

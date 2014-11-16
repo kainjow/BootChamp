@@ -34,8 +34,9 @@ int main(int argc, char *argv[])
 	char *parent_dir = dirname((char *)dest);
 	struct stat buf;
 	while (stat(parent_dir, &buf) != 0) {
-		if (mkdir(parent_dir, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+        if (mkdir(parent_dir, S_IRWXU | S_IRWXG | S_IRWXO) != 0) {
 			return errno;
+		}
 		parent_dir = dirname(parent_dir);
 	}
 	if (copyfile(src, dest, NULL, COPYFILE_ALL | COPYFILE_UNLINK) != 0) {

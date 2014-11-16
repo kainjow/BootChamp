@@ -10,10 +10,9 @@
 #import "BOMedia.h"
 #import "BOTaskAdditions.h"
 #import "BOHelperInstaller.h"
+#import "BOLog.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <sys/stat.h>
-#import <Carbon/Carbon.h>
-#import "BOLog.h"
 
 static NSString *const BOBootErrorDomain = @"BOBootErrorDomain";
 
@@ -120,8 +119,9 @@ BOOL BOAuthorizationRequired(void)
 BOOL BOBoot(BOMedia *media, NSError **error)
 {
 	if (!media) {
-		if (error)
+        if (error) {
 			*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInvalidMediaError userInfo:nil];
+        }
 		return NO;
 	}
 	
@@ -133,18 +133,21 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 		switch (ret) {
 			case BOTaskLaunched:
 				if (output && [output length] > 0) {
-					if (error)
+                    if (error) {
 						*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInstallationFailed userInfo:@{NSLocalizedDescriptionKey : output}];
+                    }
 					return NO;
 				}
 				break;
 			case BOTaskAuthorizationCanceled:
-				if (error)
+                if (error) {
 					*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootAuthorizationCanceled userInfo:nil];
+                }
 				return NO;
 			case BOTaskError:
-				if (error)
+                if (error) {
 					*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootAuthorizationError userInfo:output ? @{NSLocalizedDescriptionKey : output} : nil];
+                }
 				return NO;
 		}
 	}
@@ -171,8 +174,9 @@ BOOL BOBoot(BOMedia *media, NSError **error)
     BOLog(@"Helper status: %d", status);
     BOLog(@"Helper output: %@", output);
     if (status != EXIT_SUCCESS) {
-        if (error)
+        if (error) {
             *error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:output ? @{NSLocalizedDescriptionKey : output} : nil];
+        }
         return NO;
 	}
 	
@@ -184,14 +188,16 @@ BOOL BOBoot(BOMedia *media, NSError **error)
     // dyld: DYLD_ environment variables being ignored because main executable (/Library/Application Support/BootChamp/BOHelper) is setuid or setgid
     BOOL ignoreOutput = (output != nil && [output hasPrefix:@"dyld: DYLD_"] && [output hasSuffix:@"is setuid or setgid"]);
 	if (output && [output length] > 0 && !ignoreOutput) {
-		if (error)
+        if (error) {
 			*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:@{NSLocalizedDescriptionKey : output}];
+        }
 		return NO;
 	}
 	
 	if (!BORestart()) {
-		if (error)
+        if (error) {
 			*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootRestartFailedError userInfo:nil];
+        }
 		return NO;
 	}
 	

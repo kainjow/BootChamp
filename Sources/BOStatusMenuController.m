@@ -10,16 +10,20 @@
 #import "BOBoot.h"
 #import "BOMedia.h"
 #import "BOHelperInstaller.h"
-#import "NSApplication+LoginItems.h"
-#import <Sparkle/Sparkle.h>
 #import "BOLog.h"
 #import "BOEFI.h"
 #import "BOTaskAdditions.h"
+#import "NSApplication+LoginItems.h"
+#import <Sparkle/Sparkle.h>
 
 #define BOPrefsLaunchAtStartup	@"LaunchAtStartup"
 
 @implementation BOStatusMenuController
 {
+    NSStatusItem *statusItem;
+    NSMenuItem *bootMenuItem;
+    NSMenuItem *altBootMenuItem;
+    SUUpdater *updater;
     NSString* _bootableEFIDisk;
 }
 
@@ -93,10 +97,11 @@
 
 - (void)checkPrefs
 {
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:BOPrefsLaunchAtStartup])
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BOPrefsLaunchAtStartup]) {
 		[NSApp addToLoginItems];
-	else
+    } else {
 		[NSApp removeFromLoginItems];
+    }
 }
 
 - (void)updateBootMenuTitle
@@ -246,8 +251,9 @@
 	menuItem = [prefsSubMenu addItemWithTitle:NSLocalizedString(@"Launch at startup", "launch at startup menu item") action:@selector(preferenceAction:) keyEquivalent:@""];
 	[menuItem setIndentationLevel:1];
 	[menuItem setRepresentedObject:BOPrefsLaunchAtStartup];
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:BOPrefsLaunchAtStartup])
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:BOPrefsLaunchAtStartup]) {
 		[menuItem setState:NSOnState];
+    }
 
 	[menu addItemWithTitle:NSLocalizedString(@"BootChamp Help", "help menu item") action:@selector(showHelp:) keyEquivalent:@""];
 	[menu addItemWithTitle:NSLocalizedString(@"Check for Updates\u2026", "check for updates menu item") action:@selector(checkforUpdates:) keyEquivalent:@""];
@@ -266,8 +272,9 @@
 {
 	[NSApp activateIgnoringOtherApps:YES];
 	NSError *error = nil;
-	if (BOBoot([sender representedObject], &error))
+    if (BOBoot([sender representedObject], &error)) {
 		return;
+    }
 	[NSApp activateIgnoringOtherApps:YES]; // app may have gone inactive from auth dialog
 	NSString *msg = nil, *info = nil;
 	switch ([error code]) {
@@ -297,8 +304,9 @@
 	if (msg) {
 		NSAlert *alert = [[NSAlert alloc] init];
 		[alert setMessageText:msg];
-		if (info)
+        if (info) {
 			[alert setInformativeText:info];
+        }
 		[alert runModal];
 	}
 }
