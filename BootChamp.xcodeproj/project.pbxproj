@@ -86,6 +86,7 @@
 		A52D6EBE16687B5F00B7E885 /* hr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = hr; path = Resources/hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5468BB31A11C69800483B0F /* BOEFI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BOEFI.h; path = Sources/BOEFI.h; sourceTree = "<group>"; };
 		A5468BB41A11C6A900483B0F /* BOEFI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOEFI.m; path = Sources/BOEFI.m; sourceTree = "<group>"; };
+		A56CF31A1A1AEED900F08A2F /* Portuguese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Portuguese; path = Resources/Portuguese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A58D8D6D0E6483160073F663 /* DiskArbitration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiskArbitration.framework; path = /System/Library/Frameworks/DiskArbitration.framework; sourceTree = "<absolute>"; };
 		A58EA2C10E7191DE008837F3 /* appicon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appicon.icns; path = Resources/appicon.icns; sourceTree = "<group>"; };
 		A58EA42E0E719AA0008837F3 /* BOHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BOHelper; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +316,8 @@
 				Finnish,
 				ko,
 				Korean,
+				pt,
+				Portuguese,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* BootChamp */;
 			projectDirPath = "";
@@ -427,6 +430,7 @@
 				A52D6EBE16687B5F00B7E885 /* hr */,
 				A5F2304C1A11647A00EFD2A1 /* Finnish */,
 				A50286CA1A17A86F009E02AD /* Korean */,
+				A56CF31A1A1AEED900F08A2F /* Portuguese */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
