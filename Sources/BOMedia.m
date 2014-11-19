@@ -125,14 +125,22 @@
 		NSString *volKind = (NSString *)CFDictionaryGetValue(desc, kDADiskDescriptionVolumeKindKey);
 		NSURL *mountURL = (NSURL *)CFDictionaryGetValue(desc, kDADiskDescriptionVolumePathKey);
 		
-		for (NSString *kind in allowedKinds) {
+        BOMedia *media = [[BOMedia alloc] init];
+
+        for (NSString *kind in allowedKinds) {
 			if (volKind && [kind rangeOfString:volKind options:NSCaseInsensitiveSearch].location != NSNotFound) {
 				isValidBootCampVolume = YES;
+                
+                if ([kind isEqualToString:KIND_NTFS_3G] || [kind isEqualToString:KIND_TUXERA]) {
+                    // Third-party NTFS drivers don't work with bless' --mount option.
+                    // At least with Tuxera, bless fails with "Can't statfs /Volumes/BOOTCAMP"
+                    // so use the device variant instead.
+                    media.deviceName = [NSString stringWithUTF8String:bsdName];
+                }
 				break;
 			}
 		}
 		
-        BOMedia *media = [[BOMedia alloc] init];
         media.legacy = YES;
         NSString *mountPoint = [mountURL path];
 		if (isValidBootCampVolume && [self isBootableVolume:mountPoint]) {
