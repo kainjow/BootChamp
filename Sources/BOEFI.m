@@ -91,18 +91,19 @@ static BOOL checkDisk(NSString *diskID)
 }
 
 static BOOL isDiskIDValid(NSString *diskID) {
+    BOLog(@"%s: %@", __FUNCTION__, diskID);
     DADiskRef disk = DADiskCreateFromBSDName(kCFAllocatorDefault, [BOMedia session], diskID.UTF8String);
     if (!disk) {
-        BOLog(@"%s: NULL DADisk for %@", __FUNCTION__, diskID);
+        BOLog(@"%s: NULL DADisk", __FUNCTION__);
         return NO;
     }
     NSDictionary *desc = (__bridge_transfer NSDictionary*)DADiskCopyDescription(disk);
     CFRelease(disk);
     if (!desc) {
-        BOLog(@"%s: NULL desc for %@", __FUNCTION__, diskID);
+        BOLog(@"%s: NULL desc", __FUNCTION__);
         return NO;
     }
-    BOLog(@"%s: %@ is valid", __FUNCTION__, diskID);
+    BOLog(@"%s: valid", __FUNCTION__);
     return YES;
 }
 
