@@ -24,6 +24,7 @@
     NSMenuItem *bootMenuItem;
     NSMenuItem *altBootMenuItem;
     SUUpdater *updater;
+    dispatch_once_t _checkedEFIDiskToken;
     NSString* _bootableEFIDisk;
 }
 
@@ -175,7 +176,10 @@
 	// Load media objects in the background and call back to self with updateBootMenuWithMedia: when done
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
 	dispatch_async(queue, ^{
-		NSArray *media = [BOMedia allMedia];
+        NSArray *media = [BOMedia allMedia];
+        dispatch_once(&_checkedEFIDiskToken, ^{
+            _bootableEFIDisk = BOBootableEFI();
+        });
         if (_bootableEFIDisk && media.count == 1) {
             // hijack
             BOMedia *item = media.lastObject;
@@ -217,8 +221,6 @@
     BOLog(@"disks\n%@", output);
     (void)[NSTask launchTaskAtPath:@"/sbin/mount" arguments:nil output:&output];
     BOLog(@"mount\n%@", output);
-    
-    _bootableEFIDisk = BOBootableEFI();
     
 	statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
 	[statusItem setHighlightMode:YES];
