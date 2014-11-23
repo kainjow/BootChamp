@@ -181,7 +181,12 @@
             _bootableEFIDisk = BOBootableEFI();
         });
         if (_bootableEFIDisk && media.count == 1) {
-            // hijack
+            // If an EFI partition is found that contains Windows boot files,
+            // we need to make it the boot device instead of the NTFS partition.
+            // If the NTFS partition is made bootable, the OS will attempt
+            // to boot into it but the user will see "No bootable device".
+            // So we need to override the NTFS partition and make the EFI
+            // partition the boot device.
             BOMedia *item = media.lastObject;
             item.deviceName = _bootableEFIDisk;
             item.legacy = NO;
