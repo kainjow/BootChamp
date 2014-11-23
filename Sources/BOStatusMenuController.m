@@ -188,6 +188,18 @@
 	});
 }
 
+- (void)workspaceDidMount:(NSNotification*)note
+{
+    BOLog(@"workspaceDidMount: %@", note.userInfo[@"NSDevicePath"]);
+    [self updateBootMenu];
+}
+
+- (void)workspaceDidUnmount:(NSNotification*)note
+{
+    BOLog(@"workspaceDidUnmount: %@", note.userInfo[@"NSDevicePath"]);
+    [self updateBootMenu];
+}
+
 - (void)menuNeedsUpdate:(NSMenu * __unused)menu
 {
 	[self updateBootMenuTitle];
@@ -239,8 +251,8 @@
 	[menu addItem:bootMenuItem];
     [menu addItem:altBootMenuItem];
 	[self updateBootMenu];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(updateBootMenu) name:NSWorkspaceDidMountNotification object:nil];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(updateBootMenu) name:NSWorkspaceDidUnmountNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceDidMount:) name:NSWorkspaceDidMountNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(workspaceDidUnmount:) name:NSWorkspaceDidUnmountNotification object:nil];
 	
 	[menu addItem:[NSMenuItem separatorItem]];
 	
