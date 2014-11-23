@@ -67,7 +67,8 @@ static BOOL checkDisk(NSString *diskID)
     
     NSEnumerator *direnum = [fm enumeratorAtPath:mountPoint];
     NSString *file;
-    while ((file = [direnum nextObject]) != nil) {
+    const int maxFiles = 50; // make sure we don't log too many files
+    for (int fileCounter = 0; fileCounter < maxFiles && ((file = [direnum nextObject]) != nil); ++fileCounter) {
         if ([file hasPrefix:@".Spotlight"] || [file hasPrefix:@".Trashes"]) {
             continue;
         }
