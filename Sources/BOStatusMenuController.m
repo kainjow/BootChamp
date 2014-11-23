@@ -200,11 +200,6 @@
     [self updateBootMenu];
 }
 
-- (void)menuNeedsUpdate:(NSMenu * __unused)menu
-{
-	[self updateBootMenuTitle];
-}
-
 - (instancetype)init
 {
     if ((self = [super init]) != nil) {
