@@ -26,6 +26,7 @@
     SUUpdater *updater;
     dispatch_once_t _checkedEFIDiskToken;
     NSString* _bootableEFIDisk;
+    dispatch_queue_t _queue;
 }
 
 + (void)initialize
@@ -174,8 +175,7 @@
 	[bootMenuItem setRepresentedObject:nil];
 	
 	// Load media objects in the background and call back to self with updateBootMenuWithMedia: when done
-	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-	dispatch_async(queue, ^{
+	dispatch_async(_queue, ^{
         NSArray *media = [BOMedia allMedia];
         dispatch_once(&_checkedEFIDiskToken, ^{
             _bootableEFIDisk = BOBootableEFI();
@@ -207,7 +207,9 @@
 - (instancetype)init
 {
     if ((self = [super init]) != nil) {
-        (void)[BOLog sharedLog]; // init log;
+        (void)[BOLog sharedLog]; // init log
+        _queue = dispatch_queue_create("com.kainjow.BootChamp.update", NULL);
+        dispatch_set_target_queue(_queue, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
     }
     return self;
 }
