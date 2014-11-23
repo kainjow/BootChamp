@@ -103,6 +103,13 @@ static BOOL isDiskIDValid(NSString *diskID) {
         BOLog(@"%s: NULL desc", __FUNCTION__);
         return NO;
     }
+    NSString *content = desc[(id)kDADiskDescriptionMediaContentKey];
+    BOLog(@"%s: content = %@", __FUNCTION__, content);
+    // Make sure the partition is an EFI System Partition by checking its GUID type
+    if (!content || ![content isEqualToString:@"C12A7328-F81F-11D2-BA4B-00A0C93EC93B"]) {
+        BOLog(@"%s: invalid content", __FUNCTION__);
+        return NO;
+    }
     BOLog(@"%s: valid", __FUNCTION__);
     return YES;
 }
