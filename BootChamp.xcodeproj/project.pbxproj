@@ -93,6 +93,7 @@
 		A59B00EB17811FFE0063960C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = libs/Sparkle.framework; sourceTree = "<group>"; };
 		A59B00EF1781267D0063960C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/dsa_pub.pem; sourceTree = "<group>"; };
 		A5A1083F0C3C8DBC006A3862 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		A5C9B4DF1A2A95450051AB14 /* BOHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BOHelper.h; sourceTree = "<group>"; };
 		A5E2ABF015FC24B000216C2F /* Russian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Russian; path = Resources/Russian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E57FF8145A49E500F07C69 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Resources/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E57FFF145A49F500F07C69 /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = Resources/French.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -201,6 +202,7 @@
 		A50FF09814B6B57800EA561F /* BOHelper */ = {
 			isa = PBXGroup;
 			children = (
+				A5C9B4DF1A2A95450051AB14 /* BOHelper.h */,
 				A5E58010145A4AB000F07C69 /* BOHelper.m */,
 			);
 			name = BOHelper;

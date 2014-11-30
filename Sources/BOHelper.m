@@ -4,16 +4,21 @@
 //
 
 #import "BOTaskAdditions.h"
+#import "BOHelper.h"
 
 static int die(NSString *format, ...) NS_FORMAT_FUNCTION(1,2);
+
+static void outputDict(NSDictionary *dict) {
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:dict format:NSPropertyListXMLFormat_v1_0 options:0 error:nil];
+    [NSFileHandle.fileHandleWithStandardOutput writeData:data];
+}
 
 static int die(NSString *format, ...) {
     va_list ap;
     va_start(ap, format);
     NSString *str = [[NSString alloc] initWithFormat:format arguments:ap];
     va_end(ap);
-    fprintf(stdout, "%s\n", str.UTF8String);
-    exit(EXIT_FAILURE);
+    outputDict(@{kBOHelperError : str});
     return EXIT_FAILURE;
 }
 
@@ -22,65 +27,26 @@ static int run() {
         return die(@"Must be run as root.");
     }
     
-    NSMutableArray *argv = [[[NSProcessInfo processInfo] arguments] mutableCopy];
-    if (argv.count % 2 != 1) {
+    NSArray *argv = [[NSProcessInfo processInfo] arguments];
+    const NSUInteger argvCount = argv.count;
+    if (argvCount <= 1) {
         return die(@"Invalid number of arguments.");
     }
-    [argv removeObjectAtIndex:0]; // pop argv[0]
-    NSString *mode = nil;
-    NSString *media = nil;
-    NSString *legacy = nil;
-    while (argv.count > 0) {
-        NSString *option = [argv objectAtIndex:0];
-        NSString *value = [argv objectAtIndex:1];
-        if ([option hasPrefix:@"-"]) {
-            option = [option substringFromIndex:1];
-        }
-        if ([option isEqualToString:@"mode"]) {
-            mode = value;
-        } else if ([option isEqualToString:@"media"]) {
-            media = value;
-        } else if ([option isEqualToString:@"legacy"]) {
-            legacy = value;
-        } else {
-            die(@"Invalid arg %@", option);
-        }
-        [argv removeObjectAtIndex:0];
-        [argv removeObjectAtIndex:0];
+    NSString *taskPath = argv[1];
+    NSArray *taskArgs = nil;
+    if (argvCount > 2) {
+        taskArgs = [argv subarrayWithRange:NSMakeRange(2, argvCount - 2)];
     }
-    if (!mode || (![mode isEqualToString:@"device"] && ![mode isEqualToString:@"mount"])) {
-        return die(@"Missing or invalid mode arg.");
-    }
-    if (!media) {
-        return die(@"Missing media arg.");
-    }
-    if (legacy && (![legacy isEqualToString:@"yes"] && ![legacy isEqualToString:@"no"])) {
-        return die(@"Invalid nextonly arg.");
-    }
-    
-    NSMutableArray *taskArgs = [NSMutableArray array];
-    if ([mode isEqualToString:@"device"]) {
-        [taskArgs addObject:@"--device"];
-    } else {
-        [taskArgs addObject:@"--mount"];
-    }
-    [taskArgs addObject:media];
-    if ([legacy isEqualToString:@"yes"]) {
-        [taskArgs addObject:@"--legacy"];
-    }
-    [taskArgs addObject:@"--setBoot"];
-    [taskArgs addObject:@"--nextonly"];
-    [taskArgs addObject:@"--verbose"];
     
     NSString *output = nil;
-    int status = [NSTask launchTaskAtPath:@"/usr/sbin/bless" arguments:taskArgs output:&output];
+    int status = [NSTask launchTaskAtPath:taskPath arguments:taskArgs output:&output];
     if (output) {
         output = [output stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     }
-    if (status != 0) {
-        return die(@"%@", [@"Bless failed:\n\n" stringByAppendingString:output]);
-    }
-    
+    outputDict(@{
+        kBOHelperStatus : @(status),
+        kBOHelperOutput : output ? output : @""
+    });
     return EXIT_SUCCESS;
 }
 

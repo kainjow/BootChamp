@@ -11,6 +11,7 @@
 #import "BOTaskAdditions.h"
 #import "BOHelperInstaller.h"
 #import "BOLog.h"
+#import "BOHelper.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <sys/stat.h>
 
@@ -125,16 +126,16 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 		return NO;
 	}
 	
-	NSString *output = nil;
+	NSString *installOutput = nil;
 	NSString *toolDest = BOHelperDestination();
 	if (BOAuthorizationRequired()) {
 		NSString *prompt = [NSString stringWithFormat:NSLocalizedString(@"Administrative access is needed to change your startup disk to \"%@\".", ""), media.name];
-		BOTaskReturn ret = [NSTask launchTaskAsRootAtPath:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelperInstaller"] arguments:@[BOHelperSource(), toolDest] prompt:prompt output:&output];
+		BOTaskReturn ret = [NSTask launchTaskAsRootAtPath:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelperInstaller"] arguments:@[BOHelperSource(), toolDest] prompt:prompt output:&installOutput];
 		switch (ret) {
 			case BOTaskLaunched:
-				if (output && [output length] > 0) {
+				if (installOutput && [installOutput length] > 0) {
                     if (error) {
-						*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInstallationFailed userInfo:@{NSLocalizedDescriptionKey : output}];
+						*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInstallationFailed userInfo:@{NSLocalizedDescriptionKey : installOutput}];
                     }
 					return NO;
 				}
@@ -146,50 +147,78 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 				return NO;
 			case BOTaskError:
                 if (error) {
-					*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootAuthorizationError userInfo:output ? @{NSLocalizedDescriptionKey : output} : nil];
+					*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootAuthorizationError userInfo:installOutput ? @{NSLocalizedDescriptionKey : installOutput} : nil];
                 }
 				return NO;
 		}
 	}
 	
 	NSMutableArray *args = [NSMutableArray array];
+    [args addObject:@"/usr/sbin/bless"];
 	if (media.deviceName) {
-        [args addObject:@"-mode"];
-		[args addObject:@"device"];
-        [args addObject:@"-media"];
+        [args addObject:@"--device"];
 		[args addObject:media.deviceName];
-	}
-	else {
-        [args addObject:@"-mode"];
-        [args addObject:@"mount"];
-        [args addObject:@"-media"];
+	} else {
+        [args addObject:@"--mount"];
 		[args addObject:media.mountPoint];
 	}
-    [args addObject:@"-legacy"];
-    [args addObject:media.legacy ? @"yes" : @"no"];
+    [args addObject:@"--setBoot"];
+    [args addObject:@"--nextonly"];
+    if (media.legacy) {
+        [args addObject:@"--legacy"];
+    }
+    [args addObject:@"--verbose"];
 	
     BOLog(@"Helper path: %@", toolDest);
     BOLog(@"Helper args: %@", [args description]);
-	int status = [NSTask launchTaskAtPath:toolDest arguments:args output:&output];
-    BOLog(@"Helper status: %d", status);
-    BOLog(@"Helper output: %@", output);
-    if (status != EXIT_SUCCESS) {
+    NSString *helperOutput = nil;
+	const int helperStatus = [NSTask launchTaskAtPath:toolDest arguments:args output:&helperOutput];
+    BOLog(@"Helper status: %d", helperStatus);
+    if (helperStatus != EXIT_SUCCESS || !helperOutput) {
+        BOLog(@"Helper output (failed): %@", helperOutput);
         if (error) {
-            *error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:output ? @{NSLocalizedDescriptionKey : output} : nil];
+            *error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:helperOutput ? @{NSLocalizedDescriptionKey : helperOutput} : nil];
         }
         return NO;
 	}
 	
-    if (output != nil) {
-        output = [output stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    // Seek to XML plist output, in case there is some other unexpected output
+    NSRange range = [helperOutput rangeOfString:@"<?xml"];
+    if (range.location == NSNotFound) {
+        BOLog(@"Helper output (missing xml): %@", helperOutput);
+        if (error) {
+            *error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:nil];
+        }
+        return NO;
     }
     
-    // ignore output if it's (seen on 10.8.1):
-    // dyld: DYLD_ environment variables being ignored because main executable (/Library/Application Support/BootChamp/BOHelper) is setuid or setgid
-    BOOL ignoreOutput = (output != nil && [output hasPrefix:@"dyld: DYLD_"] && [output hasSuffix:@"is setuid or setgid"]);
-	if (output && [output length] > 0 && !ignoreOutput) {
+    NSString *xmlOutput = [helperOutput substringFromIndex:range.location];
+    NSDictionary *helperDict = [NSPropertyListSerialization propertyListWithData:[xmlOutput dataUsingEncoding:NSUTF8StringEncoding] options:NSPropertyListImmutable format:nil error:nil];
+    if (!helperDict) {
+        BOLog(@"Invalid helper dictionary");
         if (error) {
-			*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:@{NSLocalizedDescriptionKey : output}];
+            *error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:nil];
+        }
+        return NO;
+    }
+    
+    NSString *blessError = helperDict[kBOHelperError];
+    if (blessError) {
+        BOLog(@"Invalid helper dictionary");
+        if (error) {
+            *error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:@{NSLocalizedDescriptionKey: blessError}];
+        }
+        return NO;
+    }
+    
+    NSString *blessOutput = helperDict[kBOHelperOutput];
+    const int blessStatus = [helperDict[kBOHelperStatus] intValue];
+    BOLog(@"blessStatus: %d", blessStatus);
+    BOLog(@"blessOutput:\n%@", blessOutput);
+    
+    if (blessStatus != EXIT_SUCCESS) {
+        if (error) {
+			*error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootInternalError userInfo:@{NSLocalizedDescriptionKey : blessOutput}];
         }
 		return NO;
 	}
