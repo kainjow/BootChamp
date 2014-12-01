@@ -9,7 +9,8 @@
 #import "BOTaskAdditions.h"
 #if BOAPP
 #import <Security/Security.h>
-#endif
+#import "BOLog.h"
+#endif  
 
 
 @implementation NSTask (BOTaskAdditions)
@@ -17,7 +18,10 @@
 #if BOAPP
 + (BOTaskReturn)launchTaskAsRootAtPath:(NSString *)path arguments:(NSArray *)arguments prompt:(NSString *)prompt output:(NSString **)output
 {
+    const char *functionName = "launchTaskAsRoot"; // __FUNCTION__ is too long
+    BOLog(@"%s: enter", functionName);
     if (!path || ![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+        BOLog(@"%s: invalid input", functionName);
 		return BOTaskError;
     }
 	
@@ -26,6 +30,7 @@
 	
 	status = AuthorizationCreate(NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &authorizationRef);
     if (status != errAuthorizationSuccess) {
+        BOLog(@"%s: AuthorizationCreate failed: %d", functionName, (int)status);
 		return BOTaskError;
     }
 	
@@ -40,7 +45,10 @@
 	if (status != errAuthorizationSuccess) {
 		AuthorizationFree(authorizationRef, kAuthorizationFlagDestroyRights);
         if (status == errAuthorizationCanceled) {
+            BOLog(@"%s: AuthorizationCopyRights canceled", functionName);
 			return BOTaskAuthorizationCanceled;
+        } else {
+            BOLog(@"%s: AuthorizationCopyRights failed: %d", functionName, (int)status);
         }
 		return BOTaskError;
 	}
@@ -65,7 +73,10 @@
 	AuthorizationFree(authorizationRef, kAuthorizationFlagDefaults/*kAuthorizationFlagDestroyRights*/);
 	if (status != errAuthorizationSuccess) {
         if (status == errAuthorizationCanceled) {
+            BOLog(@"%s: AuthorizationFree canceled", functionName);
 			return BOTaskAuthorizationCanceled;
+        } else {
+            BOLog(@"%s: AuthorizationFree failed: %d", functionName, (int)status);
         }
 		return BOTaskError;
 	}
@@ -79,6 +90,7 @@
 		*output = str;
 	}
 	
+    BOLog(@"%s: success", functionName);
 	return BOTaskLaunched;
 }
 #endif
