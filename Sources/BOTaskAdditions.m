@@ -29,7 +29,7 @@
 		return BOTaskError;
     }
 	
-	const char *promptUTF8 = [prompt UTF8String];
+    const char *promptUTF8 = prompt ? [prompt UTF8String] : "";
 	AuthorizationItem envItems = {kAuthorizationEnvironmentPrompt, strlen(promptUTF8), (void *)promptUTF8, 0};
 	AuthorizationEnvironment env = {1, &envItems};
 	const char *cpath = [path fileSystemRepresentation];

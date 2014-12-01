@@ -10,14 +10,10 @@
 
 enum {
 	BOBootInvalidMediaError,
-	BOBootAuthorizationError,
-	BOBootAuthorizationCanceled,
-	BOBootInstallationFailed,
 	BOBootInternalError,
 	BOBootRestartFailedError,
 };
 
 @class BOMedia;
 
-BOOL BOAuthorizationRequired(void);
 BOOL BOBoot(BOMedia *media, NSError **error);

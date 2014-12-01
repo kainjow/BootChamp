@@ -20,6 +20,7 @@
 		A59B00EE178120AC0063960C /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A59B00EB17811FFE0063960C /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A59B00F01781267D0063960C /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = A59B00EF1781267D0063960C /* dsa_pub.pem */; };
 		A5C5CF410E76734800F53F5A /* BOHelper in Copy Executables */ = {isa = PBXBuildFile; fileRef = A58EA42E0E719AA0008837F3 /* BOHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A5C9B4E21A2AA3A40051AB14 /* BOHelperClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C9B4E11A2AA3A40051AB14 /* BOHelperClient.m */; };
 		A5E57FF9145A49E500F07C69 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5E57FF7145A49E500F07C69 /* Localizable.strings */; };
 		A5E58014145A4AC000F07C69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58012145A4AC000F07C69 /* main.m */; };
 		A5E58019145A4ACD00F07C69 /* BOStatusMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E58017145A4ACD00F07C69 /* BOStatusMenuController.m */; };
@@ -93,7 +94,9 @@
 		A59B00EB17811FFE0063960C /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = libs/Sparkle.framework; sourceTree = "<group>"; };
 		A59B00EF1781267D0063960C /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/dsa_pub.pem; sourceTree = "<group>"; };
 		A5A1083F0C3C8DBC006A3862 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
-		A5C9B4DF1A2A95450051AB14 /* BOHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BOHelper.h; sourceTree = "<group>"; };
+		A5C9B4E01A2AA3A40051AB14 /* BOHelperClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BOHelperClient.h; path = Sources/BOHelperClient.h; sourceTree = "<group>"; };
+		A5C9B4E11A2AA3A40051AB14 /* BOHelperClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BOHelperClient.m; path = Sources/BOHelperClient.m; sourceTree = "<group>"; };
+		A5C9B4E31A2C22330051AB14 /* BOHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BOHelper.h; path = Sources/BOHelper.h; sourceTree = "<group>"; };
 		A5E2ABF015FC24B000216C2F /* Russian */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Russian; path = Resources/Russian.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E57FF8145A49E500F07C69 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = Resources/English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A5E57FFF145A49F500F07C69 /* French */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = French; path = Resources/French.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 				A5E58012145A4AC000F07C69 /* main.m */,
 				A5E58018145A4ACD00F07C69 /* BOStatusMenuController.h */,
 				A5E58017145A4ACD00F07C69 /* BOStatusMenuController.m */,
+				A5C9B4E01A2AA3A40051AB14 /* BOHelperClient.h */,
+				A5C9B4E11A2AA3A40051AB14 /* BOHelperClient.m */,
 				A5E5801B145A4ADA00F07C69 /* BOBoot.h */,
 				A5E5801A145A4ADA00F07C69 /* BOBoot.m */,
 				A5468BB31A11C69800483B0F /* BOEFI.h */,
@@ -202,7 +207,7 @@
 		A50FF09814B6B57800EA561F /* BOHelper */ = {
 			isa = PBXGroup;
 			children = (
-				A5C9B4DF1A2A95450051AB14 /* BOHelper.h */,
+				A5C9B4E31A2C22330051AB14 /* BOHelper.h */,
 				A5E58010145A4AB000F07C69 /* BOHelper.m */,
 			);
 			name = BOHelper;
@@ -376,6 +381,7 @@
 				A5E58022145A4AE300F07C69 /* BOMedia.m in Sources */,
 				A5E58028145A4AF100F07C69 /* BOTaskAdditions.m in Sources */,
 				A5468BB51A11C6A900483B0F /* BOEFI.m in Sources */,
+				A5C9B4E21A2AA3A40051AB14 /* BOHelperClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

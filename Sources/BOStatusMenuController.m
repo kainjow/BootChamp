@@ -14,6 +14,7 @@
 #import "BOEFI.h"
 #import "BOTaskAdditions.h"
 #import "NSApplication+LoginItems.h"
+#import "BOHelperClient.h"
 #import <Sparkle/Sparkle.h>
 
 #define BOPrefsLaunchAtStartup	@"LaunchAtStartup"
@@ -115,11 +116,6 @@
     } else {
         altRestartTitle = restartTitle;
     }
-	if (BOAuthorizationRequired() && ([bootMenuItem target] || [bootMenuItem submenu])) {
-        // Add ellipsis character to indicate the user needs to authenticate
-		restartTitle = [restartTitle stringByAppendingString:@"\u2026"];
-		altRestartTitle = [altRestartTitle stringByAppendingString:@"\u2026"];
-	}
 	[bootMenuItem setTitle:restartTitle];
     [altBootMenuItem setTitle:altRestartTitle];
 }
@@ -227,6 +223,23 @@
     (void)[NSTask launchTaskAtPath:@"/sbin/mount" arguments:nil output:&output];
     BOLog(@"mount\n%@", output);
     
+    if (BOHelperInstallationRequired()) {
+        switch (BOHelperInstall()) {
+            case BOInstallStatusSuccess:
+                break;
+            case BOInstallStatusCanceled:
+                [NSApp terminate:nil];
+                return;
+            case BOInstallStatusError: {
+                NSAlert *alert = [[NSAlert alloc] init];
+                alert.messageText = NSLocalizedString(@"BootChamp was unable to install its required helper tool.", nil);
+                (void)[alert addButtonWithTitle:NSLocalizedString(@"Quit", nil)];
+                (void)[alert runModal];
+                break;
+            }
+        }
+    }
+    
 	statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
 	[statusItem setHighlightMode:YES];
     
@@ -295,14 +308,6 @@
 		case BOBootInvalidMediaError:
 			msg = NSLocalizedString(@"BootChamp was unable to find a Windows volume", nil);
 			info = NSLocalizedString(@"Supported file systems are FAT32 and NTFS.", nil);
-			break;
-		case BOBootAuthorizationError:
-			msg = NSLocalizedString(@"BootChamp was unable to set your Windows volume as the temporary startup disk", nil);
-			info = NSLocalizedString(@"Authentication may have failed.", nil);
-			break;
-		case BOBootInstallationFailed:
-			msg = NSLocalizedString(@"BootChamp was unable to install its required helper tool.", nil);
-			info = [error localizedDescription];
 			break;
 		case BOBootInternalError:
 			msg = NSLocalizedString(@"BootChamp was unable to set your Windows volume as the temporary startup disk", nil);
