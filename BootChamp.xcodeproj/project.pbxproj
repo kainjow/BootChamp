@@ -75,6 +75,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		178A63AD1AA60B39002F2AD6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* BootChamp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BootChamp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A50286CA1A17A86F009E02AD /* Korean */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Korean; path = Resources/Korean.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -318,6 +319,7 @@
 				Korean,
 				pt,
 				Portuguese,
+				de,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* BootChamp */;
 			projectDirPath = "";
@@ -431,6 +433,7 @@
 				A5F2304C1A11647A00EFD2A1 /* Finnish */,
 				A50286CA1A17A86F009E02AD /* Korean */,
 				A56CF31A1A1AEED900F08A2F /* Portuguese */,
+				178A63AD1AA60B39002F2AD6 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
