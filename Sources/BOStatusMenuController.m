@@ -271,6 +271,7 @@
 
 	[menu addItemWithTitle:NSLocalizedString(@"BootChamp Help", "help menu item") action:@selector(showHelp:) keyEquivalent:@""];
 	[menu addItemWithTitle:NSLocalizedString(@"Check for Updates\u2026", "check for updates menu item") action:@selector(checkforUpdates:) keyEquivalent:@""];
+    [menu addItemWithTitle:NSLocalizedString(@"About BootChamp", "about menu item") action:@selector(showAbout:) keyEquivalent:@""];
 	[menu addItem:[NSMenuItem separatorItem]];
 	[menu addItemWithTitle:NSLocalizedString(@"Quit", "quit menu item") action:@selector(quit:) keyEquivalent:@""];
 	[[menu itemArray] makeObjectsPerformSelector:@selector(setTarget:) withObject:self];
@@ -350,6 +351,12 @@
 - (void)quit:(id __unused)sender
 {
 	[NSApp terminate:nil];
+}
+
+- (void)showAbout:(id)sender
+{
+    [NSApp activateIgnoringOtherApps:YES];
+    [NSApp orderFrontStandardAboutPanel:sender];
 }
 
 @end
