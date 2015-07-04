@@ -166,6 +166,24 @@
     [self updateBootMenu:altBootMenuItem withMedia:media];
 }
 
+- (NSArray*)media
+{
+    NSArray *media = [BOMedia allMedia];
+    dispatch_once(&_checkedEFIDiskToken, ^{
+        _bootableEFIDisk = BOBootableEFI();
+    });
+    if (_bootableEFIDisk && media.count == 1) {
+        // If an EFI partition is found that contains Windows boot files,
+        // we need to make it the boot device instead of the NTFS partition.
+        // If the NTFS partition is made bootable, the OS will attempt
+        // to boot into it but the user will see "No bootable device".
+        BOMedia *item = media.lastObject;
+        item.deviceName = _bootableEFIDisk;
+        item.legacy = NO;
+    }
+    return media;
+}
+
 - (void)updateBootMenu
 {
 	[bootMenuItem setTitle:NSLocalizedString(@"Updating\u2026", "updating drives menu item")];
@@ -176,19 +194,7 @@
 	
 	// Load media objects in the background and call back to self with updateBootMenuWithMedia: when done
 	dispatch_async(_queue, ^{
-        NSArray *media = [BOMedia allMedia];
-        dispatch_once(&_checkedEFIDiskToken, ^{
-            _bootableEFIDisk = BOBootableEFI();
-        });
-        if (_bootableEFIDisk && media.count == 1) {
-            // If an EFI partition is found that contains Windows boot files,
-            // we need to make it the boot device instead of the NTFS partition.
-            // If the NTFS partition is made bootable, the OS will attempt
-            // to boot into it but the user will see "No bootable device".
-            BOMedia *item = media.lastObject;
-            item.deviceName = _bootableEFIDisk;
-            item.legacy = NO;
-        }
+        NSArray *media = self.media;
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[self updateBootMenuWithMedia:media];
 		});
@@ -287,7 +293,7 @@
 {
 	[NSApp activateIgnoringOtherApps:YES];
 	NSError *error = nil;
-    if (BOBoot([sender representedObject], &error)) {
+    if (BOBoot([sender representedObject], &error, YES)) {
 		return;
     }
 	[NSApp activateIgnoringOtherApps:YES]; // app may have gone inactive from auth dialog

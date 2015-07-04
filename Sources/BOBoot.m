@@ -116,7 +116,7 @@ BOOL BOAuthorizationRequired(void)
     return NO;
 }
 
-BOOL BOBoot(BOMedia *media, NSError **error)
+BOOL BOBoot(BOMedia *media, NSError **error, BOOL allowUI)
 {
 	if (!media) {
         if (error) {
@@ -128,6 +128,12 @@ BOOL BOBoot(BOMedia *media, NSError **error)
 	NSString *output = nil;
 	NSString *toolDest = BOHelperDestination();
 	if (BOAuthorizationRequired()) {
+        if (!allowUI) {
+            if (error) {
+                *error = [NSError errorWithDomain:BOBootErrorDomain code:BOBootAuthorizationError userInfo:nil];
+            }
+            return NO;
+        }
 		NSString *prompt = [NSString stringWithFormat:NSLocalizedString(@"Administrative access is needed to change your startup disk to \"%@\".", ""), media.name];
 		BOTaskReturn ret = [NSTask launchTaskAsRootAtPath:[[NSBundle mainBundle] pathForAuxiliaryExecutable:@"BOHelperInstaller"] arguments:@[BOHelperSource(), toolDest] prompt:prompt output:&output];
 		switch (ret) {

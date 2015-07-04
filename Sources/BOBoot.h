@@ -20,4 +20,4 @@ enum {
 @class BOMedia;
 
 BOOL BOAuthorizationRequired(void);
-BOOL BOBoot(BOMedia *media, NSError **error);
+BOOL BOBoot(BOMedia *media, NSError **error, BOOL allowUI);

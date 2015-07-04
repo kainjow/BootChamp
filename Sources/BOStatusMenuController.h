@@ -12,4 +12,6 @@
 
 @interface BOStatusMenuController : NSObject <NSMenuDelegate, NSApplicationDelegate>
 
+@property (readonly) NSArray *media;
+
 @end
