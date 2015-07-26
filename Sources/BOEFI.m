@@ -118,15 +118,17 @@ static BOOL isDiskIDValid(NSString *diskID) {
 NSString* BOBootableEFI(void)
 {
     BOLog(@"%s start", __FUNCTION__);
-    // This is hacky. Should probably use DiskArbitration
+    // This is hacky. Should probably use DiskArbitration.
     for (int i = 0; i < 4; ++i) {
-        NSString *diskID = [NSString stringWithFormat:@"disk%ds1", i];
-        if (!isDiskIDValid(diskID)) {
-            continue;
-        }
-        BOLog(@"%s: checking %@", __FUNCTION__, diskID);
-        if (checkDisk(diskID)) {
-            return [@"/dev/" stringByAppendingString:diskID];
+        for (int slice = 1; slice <= 4; ++slice) { // Another nasty hack
+            NSString *diskID = [NSString stringWithFormat:@"disk%ds%d", i, slice];
+            if (!isDiskIDValid(diskID)) {
+                continue;
+            }
+            BOLog(@"%s: checking %@", __FUNCTION__, diskID);
+            if (checkDisk(diskID)) {
+                return [@"/dev/" stringByAppendingString:diskID];
+            }
         }
     }
     BOLog(@"%s: no bootable EFI found", __FUNCTION__);
