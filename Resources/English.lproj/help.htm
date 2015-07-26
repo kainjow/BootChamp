@@ -36,6 +36,17 @@
 <p>To use the built-in icon, run this command and then relaunch BootChamp:</p>
 <p><code>defaults delete com.kainjow.BootChamp StatusImage</code></p>
 
+<h3>Command Line Mode (experimental)</h3>
+<p>BootChamp can be run from the command line mode for integration with scheduling tools or other custom scripts. First run BootChamp normally to make sure it is properly installed and detects your Windows partition. To use this mode, run the BootChamp executable inside the app bundle with the <code>restart</code> parameter, e.g.:
+<p><code>/Applications/BootChamp.app/Contents/MacOS/BootChamp restart</code></p>
+<p>The exit status <code>$?</code> will be 0 if successful. Here are some common error exit statuses and their meanings:</p>
+<ul>
+<li>1: No valid Windows Boot Camp partition found.</li>
+<li>2: BootChamp's helper tool needs to be installed. Run BootChamp normally to do an install.</li>
+<li>5: An error occurred attempting to set the boot device.</li>
+<li>6: Restart failed. Another process may be blocking the computer from restarting.</li>
+</ul>
+
 <h3>Troubleshooting</h3>
 <h4>The "Restart into Windows" menu is disabled.</h4>
 <p>Make sure your Boot Camp volume is mounted and visible in the Finder.</p>
