@@ -359,7 +359,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "mdfind \"kMDItemKind == '*source*' || kMDItemKind == '*Header*'\" -onlyin . | xargs genstrings -o Resources/English.lproj\n";
+			shellScript = "find Sources | xargs genstrings -o Resources/English.lproj\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
