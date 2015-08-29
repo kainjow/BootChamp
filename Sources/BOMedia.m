@@ -97,7 +97,7 @@
 {
     DASessionRef session = [self session];
     if (!session) {
-        NSLog(@"DASessionCreate failed.");
+        BOLog(@"DASessionCreate failed.");
         return nil;
     }
 	
@@ -110,7 +110,7 @@
 		const char *bsdName = buf[i].f_mntfromname;
 		DADiskRef disk = DADiskCreateFromBSDName(kCFAllocatorDefault, session, bsdName);
 		if (!disk) {
-			NSLog(@"DADiskCreateFromBSDName failed for %s", bsdName);
+			BOLog(@"DADiskCreateFromBSDName failed for %s", bsdName);
 			continue;
 		}
 		
