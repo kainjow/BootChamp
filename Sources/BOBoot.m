@@ -172,7 +172,11 @@ BOOL BOBoot(BOMedia *media, NSError **error, BOOL allowUI)
 		[args addObject:media.mountPoint];
 	}
     [args addObject:@"-legacy"];
-    [args addObject:media.legacy ? @"yes" : @"no"];
+    BOOL legacy = media.legacy;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NoLegacy"]) {
+        legacy = NO;
+    }
+    [args addObject:legacy ? @"yes" : @"no"];
 	
     BOLog(@"Helper path: %@", toolDest);
     BOLog(@"Helper args: %@", [args description]);
