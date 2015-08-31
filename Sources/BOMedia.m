@@ -107,7 +107,7 @@
 	
 	NSMutableArray *array = [NSMutableArray array];
 	struct statfs *buf = NULL;
-	int count = getmntinfo(&buf, 0);
+	int count = getmntinfo(&buf, MNT_NOWAIT);
     if (count == 0) {
         BOLog(@"%s: getmntinfo failed: %s", __FUNCTION__, strerror(errno));
         return nil;
