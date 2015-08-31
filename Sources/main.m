@@ -10,6 +10,7 @@
 #import "BOStatusMenuController.h"
 #import "BOBoot.h"
 #import "BOLog.h"
+#include <sys/sysctl.h>
 
 static int restart()
 {
@@ -25,10 +26,21 @@ static int restart()
     return 0;
 }
 
+static NSString* hwmodel() {
+    size_t len = 0;
+    if (sysctlbyname("hw.model", NULL, &len, NULL, 0) != 0 || len == 0) {
+        return nil;
+    }
+    NSMutableData *bytes = [NSMutableData dataWithLength:len];
+    (void)sysctlbyname("hw.model", [bytes mutableBytes], &len, NULL, 0);
+    return [[NSString alloc] initWithData:bytes encoding:NSUTF8StringEncoding];
+}
+
 int main(void)
 {
     @autoreleasepool {
         BOLog(@"OS: %@", [NSProcessInfo processInfo].operatingSystemVersionString);
+        BOLog(@"HW: %@", hwmodel());
         if ([[[NSProcessInfo processInfo] arguments] containsObject:@"restart"]) {
             return restart();
         }
