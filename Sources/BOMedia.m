@@ -95,9 +95,11 @@
 
 + (NSArray *)allMedia
 {
+    BOLog(@"%s: start", __FUNCTION__);
+
     DASessionRef session = [self session];
     if (!session) {
-        BOLog(@"DASessionCreate failed.");
+        BOLog(@"%s: DASessionCreate failed.", __FUNCTION__);
         return nil;
     }
 	
@@ -106,17 +108,26 @@
 	NSMutableArray *array = [NSMutableArray array];
 	struct statfs *buf = NULL;
 	int count = getmntinfo(&buf, 0);
+    if (count == 0) {
+        BOLog(@"%s: getmntinfo failed: %s", __FUNCTION__, strerror(errno));
+        return nil;
+    }
+    
+    BOLog(@"%s: getmntinfo count: %d", __FUNCTION__, count);
 	for (int i=0; i<count; i++) {
 		const char *bsdName = buf[i].f_mntfromname;
-		DADiskRef disk = DADiskCreateFromBSDName(kCFAllocatorDefault, session, bsdName);
+        BOLog(@"%s: getmntinfo[%d]: %s", __FUNCTION__, i, bsdName);
+
+        DADiskRef disk = DADiskCreateFromBSDName(kCFAllocatorDefault, session, bsdName);
 		if (!disk) {
-			BOLog(@"DADiskCreateFromBSDName failed for %s", bsdName);
+			BOLog(@"%s:   DADiskCreateFromBSDName failed", __FUNCTION__);
 			continue;
 		}
 		
 		CFDictionaryRef desc = DADiskCopyDescription(disk);
 		CFRelease(disk);
 		if (!desc) {
+            BOLog(@"%s:   DADiskCopyDescription failed", __FUNCTION__);
 			continue;
 		}
 
@@ -125,6 +136,9 @@
 		NSString *volKind = (NSString *)CFDictionaryGetValue(desc, kDADiskDescriptionVolumeKindKey);
 		NSURL *mountURL = (NSURL *)CFDictionaryGetValue(desc, kDADiskDescriptionVolumePathKey);
 		
+        BOLog(@"%s:   volKind = %@", __FUNCTION__, volKind);
+        BOLog(@"%s:   mountURL = %@", __FUNCTION__, mountURL);
+        
         BOMedia *media = [[BOMedia alloc] init];
 
         for (NSString *kind in allowedKinds) {
@@ -136,20 +150,29 @@
                     // At least with Tuxera, bless fails with "Can't statfs /Volumes/BOOTCAMP"
                     // so use the device variant instead.
                     media.deviceName = [NSString stringWithUTF8String:bsdName];
+                    BOLog(@"%s:   deviceName set", __FUNCTION__);
                 }
 				break;
 			}
 		}
+        
+        BOLog(@"%s:   isValidBootCampVolume = %d", __FUNCTION__, isValidBootCampVolume);
 		
         media.legacy = YES;
         NSString *mountPoint = [mountURL path];
-		if (isValidBootCampVolume && [self isBootableVolume:mountPoint]) {
+        const BOOL isBootable = [self isBootableVolume:mountPoint];
+        
+        BOLog(@"%s:   mountPoint = %@", __FUNCTION__, mountPoint);
+        BOLog(@"%s:   isBootable = %d", __FUNCTION__, isBootable);
+        
+		if (isValidBootCampVolume && isBootable) {
 			media.mountPoint = mountPoint;
             if (mountPoint != nil) {
                 media.name = [mountPoint lastPathComponent];
             } else {
                 media.name = (NSString*)CFDictionaryGetValue(desc, kDADiskDescriptionVolumeNameKey);
             }
+            BOLog(@"%s:   media.name = %@", __FUNCTION__, media.name);
 			[array addObject:media];
 		}
 		

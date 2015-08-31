@@ -28,6 +28,7 @@ static int restart()
 int main(void)
 {
     @autoreleasepool {
+        BOLog(@"OS: %@", [NSProcessInfo processInfo].operatingSystemVersionString);
         if ([[[NSProcessInfo processInfo] arguments] containsObject:@"restart"]) {
             return restart();
         }
