@@ -39,6 +39,7 @@ static NSString* hwmodel() {
 int main(void)
 {
     @autoreleasepool {
+        BOLog(@"App: %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString*)kCFBundleVersionKey]);
         BOLog(@"OS: %@", [NSProcessInfo processInfo].operatingSystemVersionString);
         BOLog(@"HW: %@", hwmodel());
         if ([[[NSProcessInfo processInfo] arguments] containsObject:@"restart"]) {
