@@ -184,8 +184,8 @@
 
 - (NSString*)description
 {
-    return [NSString stringWithFormat:@"<%@: %p> mount=%@, dev=%@, name=%@",
-            [self className], self, self.mountPoint, self.deviceName, self.name];
+    return [NSString stringWithFormat:@"<%@: %p> mount=%@, dev=%@, name=%@, legacy=%d",
+            [self className], self, self.mountPoint, self.deviceName, self.name, self.legacy];
 }
 
 @end
