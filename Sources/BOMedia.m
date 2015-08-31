@@ -118,6 +118,11 @@
 		const char *bsdName = buf[i].f_mntfromname;
         BOLog(@"%s: getmntinfo[%d]: %s", __FUNCTION__, i, bsdName);
 
+        if ((buf[i].f_flags & MNT_LOCAL) == 0) {
+            BOLog(@"%s:   not local, skipping", __FUNCTION__);
+            continue;
+        }
+        
         DADiskRef disk = DADiskCreateFromBSDName(kCFAllocatorDefault, session, bsdName);
 		if (!disk) {
 			BOLog(@"%s:   DADiskCreateFromBSDName failed", __FUNCTION__);
