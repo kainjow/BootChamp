@@ -7,18 +7,18 @@
 	<key>CFBundleIconFile</key>
 	<string>appicon</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.kainjow.BootChamp</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.7.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.7.1</string>
-	<key>CFBundleShortVersionString</key>
 	<string>1.7.1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.6.8</string>
